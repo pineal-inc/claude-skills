@@ -1,0 +1,13 @@
+{
+  "encoding": "utf-8-sig",
+  "columns": {
+    "日付": "date",
+    "キャンペーン名": "campaign",
+    "表示回数": "impressions",
+    "クリック数": "clicks",
+    "費用": "cost",
+    "CV数": "conversions"
+  },
+  "constants": { "media": "サンプル媒体A" },
+  "date_formats": ["%Y/%m/%d"]
+}
