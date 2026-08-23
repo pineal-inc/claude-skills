@@ -12,6 +12,8 @@
     report.md           週次合計の推移、直近週の前週差分、媒体別構成比
 
 - 週は月曜開始。週ラベルは週初日の日付(YYYY-MM-DD)
+- 前週差分は「直近週のちょうど7日前の暦週」と比較する。その週のデータが無い場合は
+  差分を出力せず、欠けている旨を書く(離れた週同士を前週として比較しない)
 - CTR = clicks/impressions, CVR = conversions/clicks, CPA = cost/conversions
   (分母0のときは空欄にする。0で埋めない)
 - 数値の解釈・示唆の文章は出力しない。判断材料になる数表までを作る
@@ -127,14 +129,18 @@ def main() -> int:
             f"| {f'{cvr:.2%}' if cvr is not None else ''} | {fmt(cpa, 1)} |")
     lines.append("")
 
-    if len(weeks) >= 2:
-        cur_wk, prev_wk = weeks[-1], weeks[-2]
+    cur_wk = weeks[-1]
+    prev_wk = (datetime.strptime(cur_wk, "%Y-%m-%d") - timedelta(days=7)).strftime("%Y-%m-%d")
+    if prev_wk in totals:
         cur, prev = totals[cur_wk], totals[prev_wk]
         lines += [f"## 直近週の前週差分({cur_wk} 週 vs {prev_wk} 週)", "",
                   "| 指標 | 前週 | 直近週 | 増減率 |", "|---|---:|---:|---:|"]
         for label, m in [("表示回数", "impressions"), ("クリック", "clicks"), ("費用", "cost"), ("CV", "conversions")]:
             lines.append(f"| {label} | {fmt(prev[m], 0)} | {fmt(cur[m], 0)} | {pct_diff(cur[m], prev[m])} |")
         lines.append("")
+    else:
+        lines += ["## 直近週の前週差分", "",
+                  f"前週({prev_wk} 週)のデータが入力に無いため、前週差分は出力していません。", ""]
 
     last_wk = weeks[-1]
     total_cost = sum(agg[(last_wk, md)]["cost"] for md in medias if (last_wk, md) in agg)

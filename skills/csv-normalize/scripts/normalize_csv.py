@@ -23,7 +23,8 @@ mapping.json の書式:
     date, media, campaign, impressions, clicks, cost, conversions
 
 - date は YYYY-MM-DD に統一する
-- 数値列は「¥」「,」「%」「円」と空白を除去してから整数/実数として検証する
+- 数値列は「¥」「,」「円」と空白を除去してから検証する。impressions/clicks/conversions は
+  整数のみ許容し、cost は実数も許容する。NaN/inf、「%」つき等の不正な値はエラーにする
 - 解釈できない行は行番号つきでstderrに列挙し、終了コード1で終わる(出力は書かない)
 
 依存: Python 3.9+ 標準ライブラリのみ。
@@ -32,6 +33,7 @@ mapping.json の書式:
 import argparse
 import csv
 import json
+import math
 import re
 import sys
 from datetime import datetime
@@ -39,18 +41,21 @@ from pathlib import Path
 
 SCHEMA = ["date", "media", "campaign", "impressions", "clicks", "cost", "conversions"]
 NUMERIC = {"impressions", "clicks", "cost", "conversions"}
+INT_COLS = {"impressions", "clicks", "conversions"}
 DEFAULT_DATE_FORMATS = ["%Y-%m-%d", "%Y/%m/%d", "%Y年%m月%d日", "%m/%d/%Y"]
-NUM_STRIP = re.compile(r"[¥￥,%円\s]")
+NUM_STRIP = re.compile(r"[¥￥,円\s]")
+NUM_SHAPE = re.compile(r"^-?\d+(\.\d+)?$")
 
 
-def clean_number(raw: str):
+def clean_number(raw: str, integer: bool = False):
     s = NUM_STRIP.sub("", raw)
-    if s == "":
+    if not NUM_SHAPE.match(s):
+        return None  # 空・「12%」・「nan」「inf」等はここで弾く
+    f = float(s)
+    if not math.isfinite(f):
         return None
-    try:
-        f = float(s)
-    except ValueError:
-        return None
+    if integer:
+        return int(f) if f.is_integer() else None
     return int(f) if f.is_integer() else f
 
 
@@ -104,9 +109,10 @@ def main() -> int:
             out["date"] = date
             ok = True
             for col in NUMERIC:
-                val = clean_number(str(out[col]))
+                val = clean_number(str(out[col]), integer=col in INT_COLS)
                 if val is None:
-                    errors.append(f"  {lineno}行目: {col}が数値でない: {out[col]!r}")
+                    kind = "整数" if col in INT_COLS else "数値"
+                    errors.append(f"  {lineno}行目: {col}が{kind}でない: {out[col]!r}")
                     ok = False
                 else:
                     out[col] = val
