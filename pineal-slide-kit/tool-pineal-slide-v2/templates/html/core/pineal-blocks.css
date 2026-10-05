@@ -1,0 +1,353 @@
+/* =========================================================================
+   pineal-slide-html / blocks
+   ページの中に混ぜて使う小部品。どれも .body の中で自由に組み合わせてよい。
+   足りなければページ専用CSSで足す。ここを書き換えるより足すほうが安全。
+   ========================================================================= */
+
+/* ------------------------------------------------------------- 分割・並び */
+
+.cols { display: grid; gap: var(--s4); align-items: stretch; }
+.cols-2 { grid-template-columns: 1fr 1fr; }
+.cols-3 { grid-template-columns: repeat(3, 1fr); }
+.cols-4 { grid-template-columns: repeat(4, 1fr); }
+.cols-5 { grid-template-columns: repeat(5, 1fr); }
+.cols-73 { grid-template-columns: 7fr 3fr; }
+.cols-64 { grid-template-columns: 6fr 4fr; }
+.cols-55 { grid-template-columns: 1fr 1fr; }
+.cols-46 { grid-template-columns: 4fr 6fr; }
+.cols-37 { grid-template-columns: 3fr 7fr; }
+.cols.gap-lg { gap: var(--s6); }
+.cols.gap-sm { gap: var(--s2); }
+.cols.top { align-items: start; }
+
+.rows { display: flex; flex-direction: column; gap: var(--s4); }
+.rows.gap-sm { gap: var(--s2); }
+.rows.gap-lg { gap: var(--s6); }
+.grow { flex: 1 1 auto; min-height: 0; }
+.spacer { flex: 1 1 auto; }
+
+/* 同列の要素は同じ見た目にする。中央・最後・変更後を自動で強調しない。
+   .accent / .hi / .em 等は、選択・状態・判断の差を説明できる場合だけ使う。
+   淡い面、グレー、黒ベタも強調。外しても読み取りが変わらなければ外す。 */
+
+/* -------------------------------------------------------------- ラベル類 */
+
+.label {
+  font-family: var(--font-en);
+  font-size: var(--fs-label); font-weight: 700;
+  letter-spacing: .18em; text-transform: uppercase;
+  color: inherit;
+}
+.label.ink { color: var(--ink-weak); }
+
+.h {
+  font-size: var(--fs-h); font-weight: 700; line-height: 1.45; margin: 0;
+}
+.h.red { color: var(--red); }
+.h.bar { padding-left: 11px; border-left: 3px solid var(--ink); }
+.h.under { padding-bottom: 6px; border-bottom: 2px solid var(--ink); display: inline-block; }
+
+.sub { font-size: var(--fs-sm); color: var(--ink-weak); line-height: 1.7; }
+.note { font-size: var(--fs-xs); color: var(--ink-weak); line-height: 1.6; }
+
+.chip {
+  display: inline-block; padding: 3px 11px; border-radius: var(--r-pill);
+  background: var(--paper-soft); color: var(--ink-mid);
+  font-size: var(--fs-xs); font-weight: 600; letter-spacing: .04em;
+}
+.chip.red { background: var(--red-pale); color: var(--ink); }
+.chip.solid { background: var(--ink); color: #fff; }
+.chip.line { background: transparent; border: 1px solid var(--line); }
+
+/* チップを横に並べる。.cols は grid なので、修飾なしだと1列に積まれてしまう。
+   個数が増えたら折り返す。 */
+.chips { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+
+.badge {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: transparent; color: var(--ink);
+  font-family: var(--font-en); font-size: 13px; font-weight: 700;
+  flex: none;
+}
+/* .ghost は既存HTMLの互換名。番号は通常、塗りで強弱を付けない。 */
+.badge.ghost { background: transparent; color: var(--ink); }
+.badge.sq { border-radius: var(--r-sm); }
+
+/* ---------------------------------------------------------------- カード */
+
+.card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  padding: 18px 20px;
+  display: flex; flex-direction: column; gap: 8px;
+  min-width: 0;
+}
+.card.accent { background: var(--red-pale); border-color: transparent; }
+.card.soft   { background: var(--paper-soft); border-color: transparent; }
+.card.dark   { background: var(--ink); border-color: var(--ink); color: #fff; }
+.card.dark .card-sub, .card.dark .sub, .card.dark .note { color: rgba(255,255,255,.66); }
+.card.dark .card-label, .card.dark .label { color: #fff; }
+.card.flat   { border: none; padding: 0; }
+.card.pad-sm { padding: 12px 14px; }
+.card.pad-lg { padding: 24px 26px; }
+.card.top-red { border-top: 3px solid var(--red); }
+
+.card-label { font-family: var(--font-en); font-size: var(--fs-label); font-weight: 700; letter-spacing: .16em; color: inherit; }
+.card-title { font-size: var(--fs-h); font-weight: 700; line-height: 1.4; margin: 0; }
+.card-body  { font-size: var(--fs-body); line-height: var(--lh-body); margin: 0; }
+.card-sub   { font-size: var(--fs-sm); color: var(--ink-weak); line-height: 1.7; margin: 0; }
+
+/* バンド：枠なしの淡色帯（v3 の bg2 バンド） */
+.band {
+  background: var(--paper-soft); padding: 18px 22px;
+  line-height: var(--lh-body);
+}
+/* 直接テキストを入れても、複数の子要素を積んでも同じように見えるようにする。
+   （flex にすると <b> などのインライン要素が行を割ってしまう） */
+.band > * + * { margin-top: 8px; }
+.band.red { background: var(--red-pale); }
+.band.dark { background: var(--ink); color: #fff; }
+
+/* ------------------------------------------------------------ メッセージ */
+
+.msg {
+  padding-left: 16px; border-left: 3px solid var(--ink);
+  font-size: var(--fs-body); line-height: var(--lh-body);
+}
+.msg.lg { font-size: 17px; }
+.msg.plain { border-left-color: var(--line); }
+
+.callout {
+  background: var(--paper-soft); border-left: 4px solid var(--ink);
+  padding: 14px 18px; border-radius: 0 var(--r-sm) var(--r-sm) 0;
+  font-size: var(--fs-body); line-height: 1.7;
+}
+.callout.soft { background: var(--paper-soft); border-left-color: var(--ink-weak); }
+
+.quote {
+  font-size: var(--fs-body); line-height: 1.8; color: var(--ink-mid);
+  padding: 12px 0 12px 18px; border-left: 2px solid var(--line);
+}
+.quote .who { display: block; margin-top: 8px; font-size: var(--fs-xs); color: var(--ink-weak); }
+
+/* -------------------------------------------------------------- リスト */
+
+.list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+.list > li { position: relative; padding-left: 17px; line-height: 1.75; }
+.list > li::before {
+  content: ""; position: absolute; left: 2px; top: .68em;
+  width: 5px; height: 5px; border-radius: 50%; background: var(--ink-mid);
+}
+.list.check > li::before {
+  content: "✓"; width: auto; height: auto; background: none;
+  top: 0; left: 0; color: var(--ink-mid); font-weight: 700; font-size: 13px;
+}
+.list.dash > li::before {
+  content: ""; top: .82em; left: 0; width: 9px; height: 1.5px; border-radius: 0; background: var(--ink-weak);
+}
+.list.sm > li { font-size: var(--fs-sm); }
+.list.tight { gap: 3px; }
+
+.kv { display: grid; grid-template-columns: max-content 1fr; gap: 6px 16px; font-size: var(--fs-sm); }
+.kv dt { color: var(--ink-weak); font-weight: 600; margin: 0; }
+.kv dd { margin: 0; }
+
+/* -------------------------------------------------------------- 数値強調 */
+
+.stats { display: flex; gap: var(--s6); flex-wrap: wrap; }
+.stat { display: flex; flex-direction: column; gap: 2px; }
+.stat-num {
+  font-family: var(--font-en); font-size: 30px; font-weight: 700;
+  line-height: 1.1; color: inherit; font-variant-numeric: tabular-nums;
+}
+.stat-num .unit { font-size: 15px; font-weight: 600; margin-left: 2px; }
+.stat-label { font-size: var(--fs-xs); color: var(--ink-weak); letter-spacing: .04em; }
+
+/* ---------------------------------------------------------------- 表 */
+
+.tbl { width: 100%; border-collapse: collapse; font-size: var(--fs-sm); }
+.tbl th, .tbl td {
+  border: 1px solid var(--line); padding: 9px 12px;
+  text-align: left; vertical-align: top; line-height: 1.6;
+}
+.tbl thead th {
+  background: var(--paper-soft); font-weight: 700; font-size: var(--fs-xs);
+  letter-spacing: .06em; color: var(--ink-mid); white-space: nowrap;
+}
+.tbl tbody th { background: #FBFAFA; font-weight: 600; white-space: nowrap; }
+.tbl .num, .tbl .r { text-align: right; font-variant-numeric: tabular-nums; }
+.tbl .c { text-align: center; }
+.tbl tr.hi td, .tbl tr.hi th { background: var(--red-pale); }
+.tbl tr.hi td { border-color: var(--line); }
+.tbl.compact th, .tbl.compact td { padding: 6px 9px; font-size: var(--fs-xs); }
+.tbl.lines th, .tbl.lines td { border-left: none; border-right: none; }
+
+/* ---------------------------------------------------- 比較（As-Is / To-Be）*/
+
+.compare { display: grid; grid-template-columns: 1fr 48px 1fr; align-items: stretch; gap: 0; }
+.compare-side {
+  background: var(--paper); border: 1px solid var(--line);
+  border-radius: var(--r-md); padding: 16px 20px;
+  display: flex; flex-direction: column; gap: 8px;
+}
+/* .to は比較の変更後を表す互換名。左右の見た目は揃える。 */
+.compare-side .side-label {
+  font-family: var(--font-en); font-size: var(--fs-label); font-weight: 700;
+  letter-spacing: .16em; color: var(--ink-weak);
+}
+.compare-arrow { display: flex; align-items: center; justify-content: center; }
+.compare-arrow::after {
+  content: ""; width: 0; height: 0;
+  border-left: 17px solid var(--ink-weak);
+  border-top: 12px solid transparent; border-bottom: 12px solid transparent;
+}
+.compare.rows-3 { grid-template-rows: auto; row-gap: 10px; }
+
+/* --------------------------------------------------------------- フロー */
+
+.flow { display: flex; align-items: stretch; gap: 0; }
+.flow-step {
+  flex: 1 1 0; min-width: 0;
+  background: var(--paper); border: 1px solid var(--line); border-radius: var(--r-md);
+  padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;
+}
+/* 実際の現在地だけを明示する。旧 .on だけでは強調しない。
+   本文にも「現在」等を記し、枠色だけに状態を委ねない。 */
+.flow-step[aria-current="step"] { border-color: var(--ink); }
+.flow-step .step-no {
+  font-family: var(--font-en); font-size: var(--fs-label); font-weight: 700;
+  letter-spacing: .14em; color: var(--ink-mid);
+}
+.flow-step .step-title { font-size: var(--fs-body); font-weight: 700; line-height: 1.45; }
+.flow-step .step-body { font-size: var(--fs-sm); color: var(--ink-mid); line-height: 1.65; }
+.flow-arrow { flex: none; width: 34px; display: flex; align-items: center; justify-content: center; }
+.flow-arrow::after {
+  content: ""; width: 0; height: 0;
+  border-left: 12px solid var(--ink-weak);
+  border-top: 8px solid transparent; border-bottom: 8px solid transparent;
+}
+.flow.vertical { flex-direction: column; }
+.flow.vertical .flow-arrow { width: auto; height: 26px; }
+.flow.vertical .flow-arrow::after {
+  border-left: 8px solid transparent; border-right: 8px solid transparent;
+  border-top: 12px solid var(--ink-weak); border-bottom: none;
+}
+
+/* ------------------------------------------------------------ タイムライン */
+
+.timeline { position: relative; padding-top: 30px; }
+.timeline .tl-axis {
+  position: absolute; left: 0; right: 0; top: 22px; height: 2px; background: var(--line);
+}
+.timeline .tl-items { display: grid; gap: var(--s4); }
+.timeline .tl-item { position: relative; padding-top: 14px; }
+.timeline .tl-item::before {
+  content: ""; position: absolute; left: 0; top: -14px;
+  width: 11px; height: 11px; border-radius: 50%;
+  background: var(--paper); border: 3px solid var(--ink-mid);
+}
+.timeline .tl-when {
+  font-family: var(--font-en); font-size: var(--fs-label); font-weight: 700;
+  letter-spacing: .1em; color: var(--ink-mid); margin-bottom: 4px;
+}
+.timeline .tl-title { font-size: var(--fs-body); font-weight: 700; line-height: 1.4; }
+.timeline .tl-body { font-size: var(--fs-sm); color: var(--ink-mid); line-height: 1.65; margin-top: 4px; }
+
+/* マイルストン：期間チップを水平軸に並べる */
+.milestone { display: grid; gap: 8px; }
+.ms-row { display: grid; grid-template-columns: 132px 1fr; align-items: center; gap: 12px; }
+.ms-row .ms-label { font-size: var(--fs-sm); font-weight: 600; }
+.ms-track { position: relative; height: 26px; background: var(--paper-soft); border-radius: var(--r-sm); }
+.ms-bar {
+  position: absolute; top: 4px; height: 18px; border-radius: var(--r-sm);
+  background: var(--ink); color: #fff;
+  font-size: var(--fs-xs); font-weight: 600;
+  display: flex; align-items: center; justify-content: center;
+}
+.ms-bar.ghost { background: var(--ink-weak); }
+.ms-head { display: grid; grid-template-columns: 132px 1fr; gap: 12px; font-size: var(--fs-xs); color: var(--ink-weak); }
+.ms-head .ms-scale { display: grid; }
+.ms-head .ms-scale span { text-align: center; border-left: 1px solid var(--line); padding: 2px 0; }
+
+/* -------------------------------------------------------------- 体制図 */
+
+.org { display: grid; gap: var(--s4); }
+.org-cell { display: grid; grid-template-columns: 152px 1fr; gap: 16px; align-items: start; }
+.org-photo {
+  width: 152px; height: 104px; border-radius: var(--r-md);
+  background: var(--paper-soft); overflow: hidden; flex: none;
+}
+.org-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* 元の縦横比を崩したくない写真は .fit を足す。枠の余りは余白で吸収する。 */
+.org-photo.fit img { object-fit: contain; }
+.org-role { font-size: var(--fs-body); font-weight: 700; }
+.org-name { font-size: var(--fs-sm); color: var(--ink-mid); margin-top: 2px; }
+.org-body { font-size: var(--fs-sm); color: var(--ink-mid); line-height: 1.65; margin-top: 6px; }
+
+/* -------------------------------------------------- 写真・プロフィール */
+
+.photo { margin: 0; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.photo img { width: 100%; display: block; border-radius: var(--r-md); }
+.photo.cover-fit { min-height: 0; }
+.photo.cover-fit img { height: 100%; object-fit: cover; }
+.photo figcaption, .photo-cap {
+  font-size: var(--fs-xs); color: var(--ink-weak); line-height: 1.55;
+}
+.photo.frame { background: var(--paper-soft); border-radius: var(--r-md); padding: 10px; }
+.photo.frame img { border-radius: var(--r-sm); }
+
+.profile { display: grid; grid-template-columns: 1fr; gap: 10px; }
+.profile-name { font-size: 22px; font-weight: 700; line-height: 1.3; }
+.profile-name .en {
+  font-family: var(--font-en); font-size: 13px; font-weight: 600;
+  letter-spacing: .12em; color: var(--ink-weak); margin-left: 12px;
+}
+.profile-role {
+  font-size: var(--fs-sm); color: var(--ink-mid); font-weight: 600;
+  padding-bottom: 8px; border-bottom: 1px solid var(--line);
+}
+
+/* ------------------------------------------------------------- ロゴ壁 */
+
+.logo-wall { display: grid; gap: 8px; }
+.logo-cell {
+  background: var(--paper); border: 1px solid var(--line); border-radius: var(--r-sm);
+  display: flex; align-items: center; justify-content: center;
+  padding: 8px; min-height: 54px;
+}
+.logo-cell img { max-width: 100%; max-height: 38px; object-fit: contain; display: block; }
+.logo-cell.soft { background: var(--paper-soft); border-color: transparent; }
+.logo-cell.text { font-size: var(--fs-sm); font-weight: 600; color: var(--ink-mid); text-align: center; line-height: 1.4; }
+
+/* -------------------------------------------------------------- 事例 */
+
+.case { display: flex; flex-direction: column; gap: 10px; }
+.case-head { display: flex; align-items: baseline; gap: 10px; }
+.case-tag {
+  font-size: var(--fs-xs); font-weight: 700; color: var(--ink-mid);
+  background: var(--paper-soft); border-radius: var(--r-sm); padding: 2px 8px;
+}
+.case-title { font-size: var(--fs-h); font-weight: 700; }
+.case-result {
+  display: flex; gap: 20px; padding: 10px 14px;
+  background: var(--paper-soft); border-radius: var(--r-sm);
+}
+
+/* -------------------------------------------------------------- 脚注 */
+
+.footnote {
+  margin-top: auto; padding-top: 8px;
+  font-size: var(--fs-xs); color: var(--ink-weak); line-height: 1.55;
+}
+.footnote.rule { border-top: 1px solid var(--line-soft); }
+
+/* ------------------------------------------------- ユーティリティ（最小限）*/
+
+.t-c { text-align: center; } .t-r { text-align: right; }
+.fill { flex: 1 1 auto; min-height: 0; }
+.nowrap { white-space: nowrap; }
+.hide { display: none; }
+.mt-0 { margin-top: 0; } .mt-2 { margin-top: var(--s2); } .mt-4 { margin-top: var(--s4); }
+.scroll-guard { overflow: hidden; }

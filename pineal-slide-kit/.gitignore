@@ -1,0 +1,5 @@
+.venv/
+node_modules/
+review/
+work/*
+!work/README.md

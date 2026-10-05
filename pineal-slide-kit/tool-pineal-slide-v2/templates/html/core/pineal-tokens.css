@@ -1,0 +1,62 @@
+/* =========================================================================
+   pineal-slide-html / tokens
+   v3 テンプレート（assets/pineal_temp.pptx）の theme1.xml 実値と
+   pineal.co.jp のサイトトーンを 1280x720 の Web キャンバス向けに翻訳した層。
+   ここだけがブランドの正本。部品CSS・資料CSSはこの変数を参照する。
+   ========================================================================= */
+
+:root {
+  /* ---- Brand color（v3 theme1.xml clrScheme の実値）---- */
+  --red:        #D21E2C;   /* accent1 */
+  --red-deep:   #A01423;   /* accent2 */
+  --red-pale:   #F1E5E5;   /* accent3 强調箱の地。旧 FBEDEE は使わない */
+  --gold:       #C8A064;   /* accent4 */
+  --sand:       #F5EBE6;   /* accent5 */
+  --slate:      #6B7180;   /* accent6 */
+  --ink:        #1C1A1A;   /* dk1 本文・見出し */
+  --ink-mid:    #57534F;   /* 本文の弱め（v3 dk2 は淡すぎるため Web 用に補間）*/
+  --ink-weak:   #939292;   /* dk2 メタ・注記 */
+  --paper:      #FFFFFF;   /* lt1 */
+  --paper-soft: #F6F3F3;   /* lt2 バンド・パネル地 */
+  --line:       #D9D9D9;   /* 枠線 */
+  --line-soft:  #ECE9E9;   /* 表の内側罫 */
+  --link:       #1B55FF;   /* hlink */
+  --marker:     #FFF176;   /* サイト由来の黄マーカー */
+
+  /* ---- Type：PPTX の pt をそのまま移植しない。Web 用に組み直した階層 ---- */
+  --font: "Noto Sans JP", "Hiragino Sans", "Hiragino Kaku Gothic ProN",
+          "Yu Gothic", "Meiryo", sans-serif;
+  --font-en: "Helvetica Neue", "Noto Sans JP", Arial, sans-serif;
+
+  --fs-cover:   52px;  /* 表紙タイトル */
+  --fs-section: 44px;  /* 章扉タイトル */
+  --fs-title:   32px;  /* ページタイトル（v3 28pt 相当）*/
+  --fs-lead:    19px;  /* リード（v3 18pt 相当）*/
+  --fs-h:       17px;  /* ブロック見出し（v3 セクション見出し 14pt 相当）*/
+  --fs-body:    15px;  /* 本文（基準本文級数）*/
+  --fs-sm:      13px;  /* 補足 */
+  --fs-xs:      11px;  /* 脚注・キャプション（v3 8pt 相当）*/
+  --fs-label:   11px;  /* EN small caps ラベル */
+
+  --lh-tight: 1.35;
+  --lh-body:  1.75;
+  --lh-lead:  1.6;
+
+  /* ---- Space ---- */
+  --s1: 4px;  --s2: 8px;  --s3: 12px; --s4: 16px;
+  --s5: 22px; --s6: 30px; --s7: 40px; --s8: 56px;
+
+  /* ---- Canvas geometry（v3 の定位置。EMU 実測 → px）---- */
+  --slide-w: 1280px;
+  --slide-h: 720px;
+  --pad-x: 58px;          /* v3 コンテンツ左端 0.60in = 57.8px */
+  --pad-top: 30px;        /* v3 タイトル上端 33.2px */
+  --pad-bottom: 50px;     /* フッター帯 */
+  --rule-red-w: 91px;     /* v3 赤罫の実幅 91.4px */
+
+  /* ---- Shape ---- */
+  --r-sm: 4px;
+  --r-md: 8px;
+  --r-lg: 14px;
+  --r-pill: 999px;
+}

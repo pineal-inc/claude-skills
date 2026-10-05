@@ -1,0 +1,9 @@
+{
+  "name": "tool-pineal-slide-v2",
+  "private": true,
+  "scripts": {
+    "deck:new": "node scripts/create-html-deck.mjs",
+    "check:html": "npm --prefix templates/html run check",
+    "setup:html": "npm --prefix templates/html ci && npm --prefix templates/html exec playwright install chromium"
+  }
+}

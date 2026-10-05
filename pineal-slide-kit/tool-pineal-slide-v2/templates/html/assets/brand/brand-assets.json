@@ -1,0 +1,432 @@
+{
+  "generated_from": {
+    "pptx": "pineal-slide-v3/assets/pineal_temp.pptx（社内版。ハッシュは社内版の値）",
+    "pptx_sha256": "e8564abb1a31eb730551fc8a8226c78e951019229664c9bd3ec432ae78dae84d",
+    "slide_size_emu": [
+      12192000,
+      6858000
+    ],
+    "slide_size_px": [
+      1280,
+      720
+    ],
+    "emu_per_px": 9525
+  },
+  "rules": [
+    "ロゴ・マーク・表紙の大型ロゴ・章扉/目次の図は元 PPTX の素材そのもの。差し替え・再描画・色変え・比率変更をしない。",
+    "表示位置と切り出しは OOXML の xfrm（off / ext / rot）と srcRect から機械的に決める。目分量で動かさない。",
+    "srcRect は無視しない。無視すると絵の大きさと切れ方が変わる。",
+    "キャンバス外へ出る枠は元がそう置いているもの。収めようとしない。",
+    "回転が要る配置（章扉・締め）は CSS の transform ではなく SVG ラッパー（section-bg.svg / end-bg.svg）で行う。 CSS の transform は Chromium の PDF 出力でページ分割に巻き込まれて崩れた。 SVG は原本 PNG をそのまま内包し、clipPath と rotate で xfrm / srcRect を再現しているだけで、描き直しではない。"
+  ],
+  "assets": [
+    {
+      "file": "assets/brand/cover-art.png",
+      "source": {
+        "package": "pineal-slide-v3/assets/pineal_temp.pptx",
+        "part": "ppt/media/image1.png",
+        "sha256": "c680e2c91cbfbfbffc547f1d82066678bba85bcb02d3d732f386a9a943f3cbe2",
+        "bytes": 3850183,
+        "pixels": [
+          2044,
+          2713
+        ]
+      },
+      "note": "表紙の大型ロゴ。装飾のアートではない。枠は右+1.33px / 上-1.67px でキャンバスを超える。元がそう置いているのでそのまま切らせる。",
+      "placements": [
+        {
+          "layout": "slideLayout1.xml",
+          "layout_name": "表紙A",
+          "shape": "図 4",
+          "css": ".slide.cover .cover-art::before",
+          "off_emu": [
+            5700806,
+            -15875
+          ],
+          "ext_emu": [
+            6503894,
+            6873875
+          ],
+          "x_px": 598.5098162729658,
+          "y_px": -1.6666666666666667,
+          "w_px": 682.8235170603674,
+          "h_px": 721.6666666666666,
+          "srcRect": {
+            "l": 12596,
+            "t": 13823,
+            "r": 24459,
+            "b": 36038
+          },
+          "background_size_px": [
+            1084.793894765855,
+            1439.3319904000211
+          ],
+          "background_position_px": [
+            -136.64063898470707,
+            -198.95886103299492
+          ]
+        }
+      ],
+      "copied_verbatim": true,
+      "local": {
+        "sha256": "c680e2c91cbfbfbffc547f1d82066678bba85bcb02d3d732f386a9a943f3cbe2",
+        "bytes": 3850183
+      }
+    },
+    {
+      "file": "assets/brand/dark-panel.png",
+      "source": {
+        "package": "pineal-slide-v3/assets/pineal_temp.pptx",
+        "part": "ppt/media/image5.png",
+        "sha256": "7d6f1b4334ac5ca755cc16c5a98a02c00a81b2f6f57e1c0d8eecd32b9f51ee21",
+        "bytes": 4321301,
+        "pixels": [
+          1237,
+          2323
+        ]
+      },
+      "note": "目次の濃灰パネル。srcRect なし、枠いっぱいに伸ばす。",
+      "placements": [
+        {
+          "layout": "slideLayout4.xml",
+          "layout_name": "目次",
+          "shape": "図 3",
+          "css": ".slide.agenda .agenda-panel",
+          "off_emu": [
+            0,
+            0
+          ],
+          "ext_emu": [
+            3650512,
+            6858000
+          ],
+          "x_px": 0.0,
+          "y_px": 0.0,
+          "w_px": 383.2558530183727,
+          "h_px": 720.0,
+          "srcRect": null
+        }
+      ],
+      "copied_verbatim": true,
+      "local": {
+        "sha256": "7d6f1b4334ac5ca755cc16c5a98a02c00a81b2f6f57e1c0d8eecd32b9f51ee21",
+        "bytes": 4321301
+      }
+    },
+    {
+      "file": "assets/brand/section-art.png",
+      "source": {
+        "package": "pineal-slide-v3/assets/pineal_temp.pptx",
+        "part": "ppt/media/image7.png",
+        "sha256": "8bfea52015b0710083450e2507edf160ca4d282f18c46029bdb16fdf6dcb87a5",
+        "bytes": 154771,
+        "pixels": [
+          2008,
+          2912
+        ]
+      },
+      "note": "章扉と締めが共有する図。どちらも 270 度回転で置かれている。章扉は上辺と右辺に白が残り、角丸は画像側が持つ。 実際の描画は section-bg.svg / end-bg.svg 経由（この PNG を内包している）。",
+      "placements": [
+        {
+          "layout": "slideLayout9.xml",
+          "layout_name": "セクション",
+          "shape": "図 1",
+          "css": ".slide.section::before",
+          "off_emu": [
+            2702583,
+            -2372904
+          ],
+          "ext_emu": [
+            6528319,
+            11933487
+          ],
+          "x_px": 283.7357480314961,
+          "y_px": -249.12377952755907,
+          "w_px": 685.3878215223098,
+          "h_px": 1252.859527559055,
+          "srcRect": {
+            "l": 25219,
+            "t": 5855,
+            "b": -115
+          },
+          "background_size_px": [
+            916.5266866213474,
+            1329.1529042637972
+          ],
+          "background_position_px": [
+            -231.13886509903762,
+            -77.82190254464533
+          ],
+          "rot_deg": 270,
+          "visual_bbox_px": [
+            -0.0001,
+            34.6121,
+            1252.8594,
+            720.0
+          ],
+          "rendered_via": "assets/brand/section-bg.svg"
+        },
+        {
+          "layout": "slideLayout12.xml",
+          "layout_name": "end",
+          "shape": "図 1",
+          "css": ".slide.end::before",
+          "off_emu": [
+            2667000,
+            -2667002
+          ],
+          "ext_emu": [
+            6857999,
+            12192001
+          ],
+          "x_px": 280.0,
+          "y_px": -280.0002099737533,
+          "w_px": 719.9998950131234,
+          "h_px": 1280.0001049868767,
+          "srcRect": {
+            "l": 10721,
+            "t": 1849,
+            "r": 10721,
+            "b": 1849
+          },
+          "background_size_px": [
+            916.5201443686492,
+            1329.1521515512418
+          ],
+          "background_position_px": [
+            -98.26012467776287,
+            -24.57602328218246
+          ],
+          "rot_deg": 270,
+          "visual_bbox_px": [
+            0.0,
+            0.0,
+            1280.0,
+            720.0
+          ],
+          "rendered_via": "assets/brand/end-bg.svg"
+        }
+      ],
+      "copied_verbatim": true,
+      "local": {
+        "sha256": "8bfea52015b0710083450e2507edf160ca4d282f18c46029bdb16fdf6dcb87a5",
+        "bytes": 154771
+      }
+    },
+    {
+      "file": "assets/brand/pineal-mark.jpg",
+      "source": {
+        "package": "pineal-slide-v3/assets/pineal_temp.pptx",
+        "part": "ppt/media/image6.jpg",
+        "sha256": "a798b84d38992fedef45058b0f32e415c0df582aa9d8690511a78e8233288a6b",
+        "bytes": 2512,
+        "pixels": [
+          150,
+          150
+        ]
+      },
+      "note": "右上のマーク。正方キャンバスに字形が縦フルブリード・横中央（暗部 x=55..95 / y=0..149 の実測）。",
+      "placements": [
+        {
+          "layout": "slideLayout5.xml",
+          "layout_name": "中面A",
+          "shape": "図 18",
+          "css": ".slide > .mark",
+          "off_emu": [
+            11391943,
+            412736
+          ],
+          "ext_emu": [
+            250838,
+            250840
+          ],
+          "x_px": 1196.0045144356955,
+          "y_px": 43.33186351706037,
+          "w_px": 26.33469816272966,
+          "h_px": 26.33490813648294,
+          "srcRect": null
+        },
+        {
+          "layout": "slideLayout7.xml",
+          "layout_name": "会社紹介",
+          "shape": "図 18",
+          "css": ".slide > .mark",
+          "off_emu": [
+            11391943,
+            412736
+          ],
+          "ext_emu": [
+            250838,
+            250840
+          ],
+          "x_px": 1196.0045144356955,
+          "y_px": 43.33186351706037,
+          "w_px": 26.33469816272966,
+          "h_px": 26.33490813648294,
+          "srcRect": null
+        }
+      ],
+      "copied_verbatim": true,
+      "local": {
+        "sha256": "a798b84d38992fedef45058b0f32e415c0df582aa9d8690511a78e8233288a6b",
+        "bytes": 2512
+      }
+    },
+    {
+      "file": "assets/brand/pineal-logo.svg",
+      "source": {
+        "package": "pineal-slide-v3/assets/pineal_temp.pptx",
+        "part": "ppt/media/image3.svg",
+        "sha256": "1a15208a53c184ab84d100b9c1eb1d8d18f73dcbaf050dd560f636bb2dfd83c0",
+        "bytes": 3978,
+        "pixels": null
+      },
+      "note": "黒ワードマーク。PPTX の SVG 代替（image2.png のベクタ版）をそのまま使用。",
+      "placements": [
+        {
+          "layout": "slideLayout1.xml",
+          "layout_name": "表紙A",
+          "shape": "グラフィックス 8",
+          "css": ".slide.cover .cover-sign img",
+          "off_emu": [
+            550863,
+            5655219
+          ],
+          "ext_emu": [
+            1558507,
+            330192
+          ],
+          "x_px": 57.833385826771654,
+          "y_px": 593.723779527559,
+          "w_px": 163.62278215223097,
+          "h_px": 34.66582677165354,
+          "srcRect": null
+        },
+        {
+          "layout": "slideLayout4.xml",
+          "layout_name": "目次",
+          "shape": "グラフィックス 10",
+          "css": ".slide.agenda > .logo",
+          "off_emu": [
+            10742635,
+            6388631
+          ],
+          "ext_emu": [
+            1167102,
+            247267
+          ],
+          "x_px": 1127.8356955380577,
+          "y_px": 670.7224146981628,
+          "w_px": 122.5303937007874,
+          "h_px": 25.95979002624672,
+          "srcRect": null
+        }
+      ],
+      "copied_verbatim": true,
+      "local": {
+        "sha256": "1a15208a53c184ab84d100b9c1eb1d8d18f73dcbaf050dd560f636bb2dfd83c0",
+        "bytes": 3978
+      }
+    },
+    {
+      "file": "assets/brand/pineal-logo-white.svg",
+      "source": {
+        "package": "pineal-slide-v3/assets/pineal_temp.pptx",
+        "part": "ppt/media/image23.svg",
+        "sha256": "c11f58c91845b742b6d47b5538b28e6196d126bdc3748fefc022623db3c47ab7",
+        "bytes": 5137,
+        "pixels": null
+      },
+      "note": "白ワードマーク。PPTX 同梱の公式白版（image22.png のベクタ版）をそのまま使用。",
+      "placements": [
+        {
+          "layout": "slideLayout12.xml",
+          "layout_name": "end",
+          "shape": "グラフィックス 3",
+          "css": ".slide.end img",
+          "off_emu": [
+            5316747,
+            3263904
+          ],
+          "ext_emu": [
+            1558507,
+            330192
+          ],
+          "x_px": 558.1886614173228,
+          "y_px": 342.66708661417323,
+          "w_px": 163.62278215223097,
+          "h_px": 34.66582677165354,
+          "srcRect": null
+        }
+      ],
+      "copied_verbatim": true,
+      "local": {
+        "sha256": "c11f58c91845b742b6d47b5538b28e6196d126bdc3748fefc022623db3c47ab7",
+        "bytes": 5137
+      }
+    },
+    {
+      "file": "assets/brand/pineal-mark-white.svg",
+      "source": {
+        "package": "pineal-slide-v3/assets/pineal_temp.pptx",
+        "part": null
+      },
+      "note": "PPTX に白のマーク単体素材は無い（濃灰面にマークを置くレイアウトが無いため）。image23.svg の字形2パスを d そのままで抜き出し、image6.jpg と同じ 1:1 キャンバスへ平行移動しただけ。字形の縦横比 0.2741 は image6.jpg の実測 0.2733 と一致する。再描画はしていない。",
+      "placements": [
+        {
+          "layout": null,
+          "layout_name": null,
+          "shape": null,
+          "css": ".slide.dark .mark",
+          "note": "v3 に対応する配置は無い。濃灰の自由設計ページ用。"
+        }
+      ],
+      "local": {
+        "sha256": "f1c8d0b836a2ba95c14c4c4fedf47ea8e4056da433bf52755b6e6c85e7d3aaf1",
+        "bytes": 1440
+      }
+    },
+    {
+      "file": "assets/brand/section-bg.svg",
+      "source": {
+        "package": null,
+        "part": null,
+        "derived_from": "assets/brand/section-art.png (= ppt/media/image7.png)"
+      },
+      "note": "章扉の背景。section-art.png を base64 で内包し、clipPath（回転前の枠）と rotate(270) で PPTX の配置を再現した表示用ラッパー。viewBox は 1280 x 720 のキャンバスそのもの。CSS からは .slide.section::before に等倍の背景として貼る。",
+      "local": {
+        "sha256": "19d43ecd5f691a0f114af7113b07300cadd295d48c86c65e6770ffcc2182a2e8",
+        "bytes": 206861
+      },
+      "placements": [
+        {
+          "layout": "slideLayout9.xml",
+          "layout_name": "セクション",
+          "css": ".slide.section::before",
+          "note": "座標は同じ scene の section-art.png のエントリを参照。SVG 内の clipPath / rotate / image がその値をそのまま持っている。"
+        }
+      ]
+    },
+    {
+      "file": "assets/brand/end-bg.svg",
+      "source": {
+        "package": null,
+        "part": null,
+        "derived_from": "assets/brand/section-art.png (= ppt/media/image7.png)"
+      },
+      "note": "締めの背景。同じく section-art.png を内包し、layout12 の xfrm / srcRect を再現した表示用ラッパー。CSS からは .slide.end::before に等倍の背景として貼る。",
+      "local": {
+        "sha256": "47ec0aa0460e7e2aac802b3d30891b302e3e2ad1f9aab8c84f4c8366a434ff8f",
+        "bytes": 206847
+      },
+      "placements": [
+        {
+          "layout": "slideLayout12.xml",
+          "layout_name": "end",
+          "css": ".slide.end::before",
+          "note": "座標は同じ scene の section-art.png のエントリを参照。SVG 内の clipPath / rotate / image がその値をそのまま持っている。"
+        }
+      ]
+    }
+  ]
+}

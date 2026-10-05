@@ -1,0 +1,325 @@
+/* =========================================================================
+   pineal-slide-html / slide
+   16:9 固定キャンバス、ページの共通クロム（タイトル・罫・リード・フッター）、
+   ページ型プリセット（表紙・目次・章扉・中面・分割・自由）。
+   ========================================================================= */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  color: var(--ink);
+  background: #E7E4E4;
+  font-feature-settings: "palt" 1;
+}
+
+/* 段落の既定マージンは持たせない。縦の間隔は .rows / .body の gap で決める。
+   :where() で詰めているので、.lead など個別指定が普通に勝つ。 */
+.slide :where(p, h1, h2, h3, h4, ul, ol, dl, dd, figure, table) { margin: 0; }
+
+/* ---------------------------------------------------------------- canvas */
+
+.slide {
+  position: relative;
+  width: var(--slide-w);
+  height: var(--slide-h);
+  overflow: hidden;
+  background: var(--paper);
+  color: var(--ink);
+  padding: var(--pad-top) var(--pad-x) var(--pad-bottom);
+  display: flex;
+  flex-direction: column;
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+}
+
+/* ------------------------------------------------------- head / kicker */
+
+.slide-head { position: relative; flex: none; }
+
+.kicker {
+  font-size: var(--fs-label);
+  font-weight: 700;
+  letter-spacing: .18em;
+  color: var(--red);
+  line-height: 1.4;
+  margin: 0 0 6px;
+}
+
+.title {
+  font-size: var(--fs-title);
+  font-weight: 700;
+  line-height: var(--lh-tight);
+  letter-spacing: .01em;
+  margin: 0;
+}
+.title .sub {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--ink-weak);
+  margin-left: .6em;
+}
+
+/* v3 の 2 本罫：灰の全幅罫の上に、左 91px だけ赤罫を重ねる */
+.slide-head.rule { padding-bottom: 13px; border-bottom: 1px solid var(--line); }
+.slide-head.rule::after {
+  content: "";
+  position: absolute; left: 0; bottom: -1px;
+  width: var(--rule-red-w); height: 2px;
+  background: var(--red);
+}
+
+/* 右上の pineal マーク。
+   v3 の中面A / 会社紹介レイアウトが置いている図（ppt/media/image6.jpg）を、
+   同じ枠（x=1196.004514 y=43.331864 26.334698 x 26.334908 px）にそのまま置く。
+   元素材は正方キャンバスで、字形は上下いっぱい・左右中央。枠と縦横比が一致するので
+   100% 100% で歪まない。数値の出どころは assets/brand/brand-assets.json。 */
+.slide > .mark {
+  position: absolute;
+  left: 1196.004514px; top: 43.331864px;
+  width: 26.334698px; height: 26.334908px;
+  background: url("../assets/brand/pineal-mark.jpg") center/100% 100% no-repeat;
+}
+
+/* --------------------------------------------------------------- lead */
+
+.lead {
+  flex: none;
+  margin: 21px 0 0;
+  font-size: var(--fs-lead);
+  line-height: var(--lh-lead);
+  font-weight: 500;
+  color: var(--ink);
+  max-width: 1050px;
+}
+.lead.check { padding-left: 1.5em; text-indent: -1.5em; }
+.lead.check::before { content: "✓"; color: var(--red); font-weight: 700; margin-right: .5em; }
+
+/* --------------------------------------------------------------- body */
+
+.body {
+  flex: 1 1 auto;
+  min-height: 0;
+  margin-top: var(--s5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s4);
+}
+.body.tight { margin-top: var(--s4); gap: var(--s3); }
+.body.center { justify-content: center; }
+
+/* ------------------------------------------------------------- footer */
+
+.slide-foot {
+  position: absolute;
+  left: var(--pad-x); right: var(--pad-x); bottom: 18px;
+  height: 20px;
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: var(--fs-xs);
+  color: var(--ink-weak);
+  letter-spacing: .04em;
+}
+.slide-foot img, .slide-foot svg { height: 15px; width: auto; display: block; }
+.slide-foot .foot-meta { font-variant-numeric: tabular-nums; }
+.slide-foot.hairline::before {
+  content: ""; position: absolute; left: 0; right: 0; top: -10px;
+  height: 1px; background: var(--line-soft);
+}
+
+/* =========================================================== page types */
+
+/* ---- 表紙（v3 表紙A：右に大型ロゴ、左下にワードマーク）---- */
+.slide.cover { padding: 0; display: block; }
+/* 表紙の大型ロゴ。v3 表紙A の図（ppt/media/image1.png）をそのまま同梱し、
+   OOXML の xfrm と srcRect をそのまま CSS にした。
+     枠   off(5700806,-15875) ext(6503894,6873875) EMU → x=598.509816 y=-1.666667 w=682.823517 h=721.666667 px
+     切り出し srcRect l=12596 t=13823 r=24459 b=36038（1/100000 単位）
+   枠は右と上でキャンバスをわずかに超える。元がそう置いているので、そのまま切らせる。
+   .cover-art 自体は全面のクリップ層にして、絵は ::before に持たせている。
+   class 名は cover-art のままだが、中身は装飾のアートではなくブランドのロゴ。勝手に差し替えない。 */
+.slide.cover .cover-art { position: absolute; inset: 0; overflow: hidden; }
+.slide.cover .cover-art::before {
+  content: "";
+  position: absolute;
+  left: 598.509816px; top: -1.666667px;
+  width: 682.823517px; height: 721.666667px;
+  background-image: url("../assets/brand/cover-art.png");
+  background-repeat: no-repeat;
+  background-size: 1084.793895px 1439.331990px;
+  background-position: -136.640639px -198.958861px;
+}
+.slide.cover .cover-inner {
+  /* 右の大型ロゴは x=597 から始まる。長いタイトルが乗らないよう文字は 660px で止める */
+  position: absolute; left: var(--pad-x); top: 0; bottom: 0; width: 660px;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.slide.cover .cover-kicker {
+  font-family: var(--font-en);
+  font-size: 13px; font-weight: 600; letter-spacing: .22em;
+  color: var(--red); margin-bottom: 20px;
+}
+.slide.cover .cover-title {
+  font-size: var(--fs-cover); font-weight: 700; line-height: 1.24; margin: 0;
+  overflow-wrap: anywhere;
+  letter-spacing: .005em;
+}
+.slide.cover .cover-to { margin-top: 34px; font-size: 17px; font-weight: 500; }
+.slide.cover .cover-date { margin-top: 10px; font-size: 14px; color: var(--ink-weak); }
+/* 表紙のワードマーク。v3 表紙A の枠 off(550863,5655219) ext(1558507,330192) EMU
+   → x=57.833386 y=593.723780 w=163.622782 h=34.665827 px にそのまま合わせる。 */
+.slide.cover .cover-sign {
+  position: absolute; left: 57.833386px; top: 593.723780px;
+}
+.slide.cover .cover-sign img { width: 163.622782px; height: 34.665827px; display: block; }
+.slide.cover .cover-sign .org { margin-top: 8px; font-size: 12px; color: var(--ink); }
+
+/* ---- 目次（v3：左に濃灰パネル、右に項目）---- */
+.slide.agenda { padding: 0; display: block; }
+/* 目次の濃灰パネル。v3 目次レイアウトの図（ppt/media/image5.png）をそのまま同梱。
+   枠 off(0,0) ext(3650512,6858000) EMU → 383.255853 x 720 px、srcRect なし＝全面を枠に伸ばす。
+   元画像 1237x2323 と枠の縦横比がほぼ同じなので歪まない。 */
+.slide.agenda .agenda-panel {
+  position: absolute; left: 0; top: 0; width: 383.255853px; height: 720px;
+  background: url("../assets/brand/dark-panel.png") center/100% 100% no-repeat, var(--ink);
+  color: #fff;
+}
+.slide.agenda .agenda-panel .en {
+  position: absolute; left: 61px; top: 330px;
+  font-family: var(--font-en);
+  font-size: 26px; font-weight: 600; letter-spacing: .12em;
+}
+/* 目次のワードマークは、パネルの中ではなく白地の右下に黒で置くのが元の形。
+   枠 off(10742635,6388631) ext(1167102,247267) EMU
+   → x=1127.835696 y=670.722415 w=122.530394 h=25.959790 px。 */
+.slide.agenda > .logo {
+  position: absolute;
+  left: 1127.835696px; top: 670.722415px;
+  width: 122.530394px; height: 25.959790px;
+  display: block;
+}
+.slide.agenda .agenda-list {
+  position: absolute; left: 470px; right: var(--pad-x); top: 84px;
+  display: flex; flex-direction: column; gap: 2px;
+}
+.slide.agenda .agenda-item {
+  display: flex; align-items: baseline; gap: 18px;
+  padding: 13px 4px; border-bottom: 1px solid var(--line);
+}
+.slide.agenda .agenda-item .no {
+  font-family: var(--font-en); font-size: 13px; font-weight: 700;
+  color: var(--red); letter-spacing: .1em; width: 26px; flex: none;
+}
+.slide.agenda .agenda-item .nm { font-size: 18px; font-weight: 600; }
+.slide.agenda .agenda-item .desc {
+  margin-left: auto; font-size: var(--fs-sm); color: var(--ink-weak);
+}
+.slide.agenda .agenda-item.on .nm { color: var(--red); }
+
+/* ---- 章扉（v3 セクション：全面濃灰、大タイトル＋大番号）---- */
+/* 章扉。v3 セクションレイアウトの図（ppt/media/image7.png）をそのまま同梱。
+   元は 270 度回転した枠に入っていて、上辺と右辺に白が残り、角丸もその画像が持っている。
+     枠   off(2702583,-2372904) ext(6528319,11933487) EMU rot=16200000(=270deg)
+          → 回転前 x=283.735748 y=-249.123780 w=685.387822 h=1252.859528 px
+          → 回転後の見え方は x 0〜1252.859 / y 34.612〜720
+     切り出し srcRect l=25219 t=5855 b=-115
+   回転は CSS の background では表せない。::before に transform: rotate を掛ける手もあるが、
+   Chromium の印刷経路（PDF 出力）で回転前の枠がページ分割に巻き込まれて絵が崩れた。
+   そこで回転と切り出しを SVG 側（assets/brand/section-bg.svg）に閉じ込め、
+   CSS からは 1280 x 720 の素の背景として貼る。SVG が内包する画像は原本 section-art.png のままで、
+   描き直しも比率変更もしていない（原本も assets/brand/ に残してある）。 */
+.slide.section {
+  padding: 0; display: block;
+  background: var(--paper);
+  color: #fff;
+  /* ::before を z-index:-1 で敷くので、ここで重なりの文脈を作る。
+     これが無いと負の z-index が .slide の背景より裏へ落ちて絵が消える。 */
+  isolation: isolate;
+}
+.slide.section::before {
+  content: "";
+  position: absolute; z-index: -1;
+  inset: 0;
+  background: url("../assets/brand/section-bg.svg") 0 0 / 1280px 720px no-repeat;
+}
+.slide.section .sec-no {
+  position: absolute; right: 60px; bottom: 30px;
+  font-family: var(--font-en); font-size: 116px; font-weight: 700;
+  line-height: 1; color: rgba(255,255,255,.16); letter-spacing: -.02em;
+}
+.slide.section .sec-inner { position: absolute; left: 76px; top: 285px; right: 300px; }
+.slide.section .sec-en {
+  font-family: var(--font-en); font-size: 13px; font-weight: 600;
+  letter-spacing: .22em; color: var(--red); margin-bottom: 16px;
+}
+.slide.section .sec-title { font-size: var(--fs-section); font-weight: 700; line-height: 1.3; margin: 0; }
+.slide.section .sec-lead { margin-top: 16px; font-size: 15px; color: rgba(255,255,255,.72); }
+
+/* ---- 中面B / 分割（v3：左テキスト、右に淡色パネル）---- */
+.slide.split .split-panel {
+  position: absolute; top: 0; right: 0; width: 833px; height: 100%;
+  background: var(--paper-soft);
+}
+.slide.split .slide-head, .slide.split .lead { max-width: 330px; }
+.slide.split .title { font-size: 24px; }
+.slide.split .slide-head.rule { border-bottom-color: transparent; }
+.slide.split .body { position: relative; }
+
+/* ---- 締め（全面濃灰＋白ロゴ）---- */
+/* 締め。v3 end レイアウトも章扉と同じ図（ppt/media/image7.png）を 270 度回転で全面に敷く。
+     枠   off(2667000,-2667002) ext(6857999,12192001) EMU rot=16200000
+          → 回転後はちょうど 1280 x 720 の全面
+     切り出し srcRect l=10721 t=1849 r=10721 b=1849
+   同じ理由で回転と切り出しは assets/brand/end-bg.svg 側に持たせている。
+   ワードマークの枠 off(5316747,3263904) ext(1558507,330192) EMU
+   → x=558.188661 y=342.667087 w=163.622782 h=34.665827 px（キャンバス中央）。 */
+.slide.end {
+  padding: 0; display: flex; align-items: center; justify-content: center;
+  background: var(--ink); color: #fff;
+  /* 章扉と同じ理由。::before（z-index:-1）を背景の上・ロゴの下に置くため。 */
+  isolation: isolate;
+}
+.slide.end::before {
+  content: "";
+  position: absolute; z-index: -1;
+  inset: 0;
+  background: url("../assets/brand/end-bg.svg") 0 0 / 1280px 720px no-repeat;
+}
+.slide.end img { width: 163.622782px; height: 34.665827px; }
+
+/* ---- 自由設計：クロムを外した素のキャンバス ---- */
+.slide.free { padding: 0; display: block; }
+
+/* ---- 濃灰ページ（自由設計の下敷き）---- */
+.slide.dark { background: var(--ink); color: #fff; }
+.slide.dark .title, .slide.dark .lead { color: #fff; }
+.slide.dark .slide-head.rule { border-bottom-color: rgba(255,255,255,.22); }
+.slide.dark .slide-foot { color: rgba(255,255,255,.6); }
+/* 濃灰ページのマーク。PPTX は濃灰面にマークを置いていないので白の単体素材が無い。
+   公式の白ワードマークから字形2パスを座標のまま抜いたものを使う（assets/brand/brand-assets.json 参照）。 */
+.slide.dark .mark { background-image: url("../assets/brand/pineal-mark-white.svg"); }
+
+/* ============================================================== inline */
+
+b, strong { font-weight: 700; }
+.em { color: var(--red); font-weight: 700; }
+.marker { background: linear-gradient(transparent 62%, var(--marker) 62%); padding: 0 .05em; }
+.marker-red { background: rgba(210,30,44,.14); border-radius: 3px; padding: 0 .25em; }
+.num { font-variant-numeric: tabular-nums; }
+a { color: var(--red); text-decoration: none; }
+
+/* =============================================================== print */
+
+@page { size: 1280px 720px; margin: 0; }
+
+@media print {
+  body { background: #fff; }
+  .slide {
+    break-after: page; page-break-after: always;
+    box-shadow: none !important; margin: 0 !important;
+  }
+  .slide:last-child { break-after: auto; page-break-after: auto; }
+  .no-print { display: none !important; }
+}

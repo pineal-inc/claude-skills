@@ -1,0 +1,15 @@
+{
+  "name": "pineal-slide-html",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "pineal のブランドを継承した HTML スライドのテンプレート一式。HTML を開くだけで閲覧でき、依存は検証スクリプト専用。",
+  "scripts": {
+    "check": "node scripts/render.mjs",
+    "check:starter": "node scripts/render.mjs starter.html",
+    "setup": "npm install && npx playwright install chromium"
+  },
+  "devDependencies": {
+    "playwright": "1.58.2"
+  }
+}

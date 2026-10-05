@@ -1,0 +1,62 @@
+/* =========================================================================
+   pineal-slide-html / viewer
+   ブラウザで見るための外側だけ。スライドの中身には一切干渉しない。
+   印刷時は全て無効化され、1280x720 の素のページだけが残る。
+   ========================================================================= */
+
+body.deck-view { background: #E7E4E4; margin: 0; }
+
+.deck {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 26px; padding: 26px 0 80px;
+}
+.deck > .slide {
+  zoom: var(--zoom, 1);
+  box-shadow: 0 3px 16px rgba(0,0,0,.16);
+  flex: none;
+}
+
+/* プレゼン表示：1枚だけ中央に出す。
+   @media screen で囲ってあるので、プレゼン表示のまま印刷しても全ページ出る。 */
+@media screen {
+  body.present .deck { padding: 0; gap: 0; height: 100vh; justify-content: center; }
+  body.present .deck > .slide { display: none; box-shadow: none; }
+  body.present .deck > .slide.current { display: flex; }
+  body.present .deck > .slide.current.cover,
+  body.present .deck > .slide.current.agenda,
+  body.present .deck > .slide.current.section,
+  body.present .deck > .slide.current.free { display: block; }
+  body.present { background: #1A1818; overflow: hidden; }
+}
+
+/* ツールバー */
+.deck-bar {
+  position: fixed; right: 14px; top: 14px; z-index: 50;
+  display: flex; gap: 6px; align-items: center;
+  background: rgba(28,26,26,.86); color: #fff;
+  border-radius: var(--r-pill); padding: 6px 8px;
+  font-family: var(--font); font-size: 12px;
+}
+.deck-bar button {
+  font: inherit; color: #fff; background: transparent;
+  border: 1px solid rgba(255,255,255,.28); border-radius: var(--r-pill);
+  padding: 4px 11px; cursor: pointer;
+}
+.deck-bar button:hover { background: rgba(255,255,255,.14); }
+.deck-bar .count { padding: 0 8px; font-variant-numeric: tabular-nums; opacity: .8; }
+
+/* スライド番号のふきだし（スクロール表示時） */
+.deck > .slide::after {
+  content: attr(data-n);
+  position: absolute; right: -34px; top: 0;
+  font-size: 11px; color: #9A9595; font-variant-numeric: tabular-nums;
+}
+body.present .deck > .slide::after { display: none; }
+
+@media print {
+  .deck { display: block; padding: 0; gap: 0; }
+  .deck > .slide { zoom: 1 !important; box-shadow: none; }
+  .deck > .slide::after { display: none; }
+  .deck-bar { display: none; }
+  body.present { overflow: visible; }
+}

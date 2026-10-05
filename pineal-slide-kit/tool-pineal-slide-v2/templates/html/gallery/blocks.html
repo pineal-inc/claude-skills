@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>部品カタログ ｜ pineal slide html</title>
+<link rel="stylesheet" href="../core/pineal-tokens.css">
+<link rel="stylesheet" href="../core/pineal-slide.css">
+<link rel="stylesheet" href="../core/pineal-blocks.css">
+<link rel="stylesheet" href="../core/pineal-viewer.css">
+<style>
+  /* このギャラリーだけの表示補助。deck-gallery の中に閉じてある */
+  .deck-gallery code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 11px; color: var(--ink-mid); background: var(--paper-soft); padding: 1px 5px; border-radius: 3px; }
+  .deck-gallery .spec { font-size: 11px; color: var(--ink-weak); margin-top: 4px; }
+  .deck-gallery .demo { border: 1px dashed var(--line); border-radius: var(--r-md); padding: 14px; }
+</style>
+</head>
+<body class="deck-gallery">
+<div class="deck">
+
+<!-- 00 扉 -->
+<section class="slide section">
+  <div class="sec-inner">
+    <div class="sec-en">CATALOG</div>
+    <h2 class="sec-title">部品カタログ</h2>
+    <p class="sec-lead">ページの中に混ぜて使う小部品。組み合わせは自由で、足りなければ資料固有CSSで足す。</p>
+  </div>
+  <div class="sec-no">A</div>
+</section>
+
+<!-- 01 ページのクロム -->
+<section class="slide">
+  <span class="mark"></span>
+  <header class="slide-head rule">
+    <div class="kicker">A-01 ページのクロム</div>
+    <h2 class="title">タイトル・罫・リード・マーク・フッター</h2>
+  </header>
+  <p class="lead">v3 の中面Aの定位置をそのまま持ってきた層。ここは触らずに中身だけ差し替える。</p>
+  <div class="body">
+    <div class="cols cols-2 fill">
+      <div class="card">
+        <h3 class="card-title">構造</h3>
+        <ul class="list sm">
+          <li><code>&lt;header class="slide-head rule"&gt;</code> … 灰の全幅罫＋左91pxの赤罫</li>
+          <li><code>.kicker</code> … 章番号と section 名（赤・0.18em）</li>
+          <li><code>.title</code> … 32px / 700。結論ではなく主題を名指しする</li>
+          <li><code>.lead</code> … 19px。そのページで言い切る一文をここに書く</li>
+          <li><code>.lead.check</code> … 行頭に ✓（v3 のリード表現）</li>
+          <li><code>&lt;span class="mark"&gt;</code> … 右上の pineal マーク</li>
+          <li><code>&lt;footer class="slide-foot"&gt;</code> … 左ロゴ／右メタ</li>
+        </ul>
+      </div>
+      <div class="card soft">
+        <h3 class="card-title">v3 からの実測値</h3>
+        <dl class="kv">
+          <dt>キャンバス</dt><dd>1280 × 720 px（13.333 × 7.5 in）</dd>
+          <dt>左右の余白</dt><dd>58px（v3 0.60in = 57.8px）</dd>
+          <dt>タイトル上端</dt><dd>30px（v3 33.2px）</dd>
+          <dt>罫の位置</dt><dd>y ≒ 88px（v3 87.7px）</dd>
+          <dt>赤罫の幅</dt><dd>91px（v3 91.4px）</dd>
+          <dt>マーク</dt><dd>右上 y=43px / 27px 高（v3 26.3px）</dd>
+        </dl>
+        <p class="note">PPTX の 7.5〜9.5pt という級数は Web には小さすぎるため、本文は 15px を基準にした。</p>
+      </div>
+    </div>
+  </div>
+  <footer class="slide-foot"><img src="../assets/brand/pineal-logo.svg" alt="pineal"><span class="foot-meta">部品カタログ ／ 01</span></footer>
+</section>
+
+<!-- 02 箱 -->
+<section class="slide">
+  <span class="mark"></span>
+  <header class="slide-head rule">
+    <div class="kicker">A-02 箱</div>
+    <h2 class="title">カードとバンド</h2>
+  </header>
+  <p class="lead">部品の見た目を比較するカタログ。実際の資料では同列の項目を揃え、状態や判断の違いがある場合だけ強調する。</p>
+  <div class="body">
+    <div class="cols cols-4">
+      <div class="card"><div class="card-label">DEFAULT</div><h3 class="card-title">.card</h3><p class="card-body">白地＋#D9D9D9 の枠。角丸8px。</p></div>
+      <div class="card accent"><div class="card-label">ACCENT</div><h3 class="card-title">.card.accent</h3><p class="card-body">明示された選択・判定対象に使う。キーワードという理由では塗らない。</p></div>
+      <div class="card soft"><div class="card-label ink">SOFT</div><h3 class="card-title">.card.soft</h3><p class="card-body">淡色地 #F6F3F3・枠なし。</p></div>
+      <div class="card dark"><div class="card-label">DARK</div><h3 class="card-title">.card.dark</h3><p class="card-body">濃灰地。黒ベタも強調なので、周囲との差に理由がある場合に使う。</p></div>
+    </div>
+    <div class="cols cols-3">
+      <div class="card top-red"><h3 class="card-title">.card.top-red</h3><p class="card-sub">上辺だけ赤。注意すべき条件など、差を示す理由がある場合に使う。</p></div>
+      <div class="card pad-sm"><h3 class="card-title">.card.pad-sm</h3><p class="card-sub">詰めたいとき。<code>.pad-lg</code> もある。</p></div>
+      <div class="card flat"><h3 class="card-title">.card.flat</h3><p class="card-sub">枠も余白も外した素の縦積み。</p></div>
+    </div>
+    <div class="band"><div class="label ink">BAND</div><div>枠のない淡色の帯。<code>.band.red</code> / <code>.band.dark</code>。v3 の bg2 バンドに対応する。</div></div>
+  </div>
+  <footer class="slide-foot"><img src="../assets/brand/pineal-logo.svg" alt="pineal"><span class="foot-meta">部品カタログ ／ 02</span></footer>
+</section>
+
+<!-- 03 文 -->
+<section class="slide">
+  <span class="mark"></span>
+  <header class="slide-head rule">
+    <div class="kicker">A-03 文</div>
+    <h2 class="title">メッセージ・引用・注意書き・インライン強調</h2>
+  </header>
+  <p class="lead">長い文章を置くページでは、箱に詰めずに文のまま置いたほうが読める。</p>
+  <div class="body">
+    <div class="cols cols-2 top">
+      <div class="rows">
+        <div class="msg lg">.msg.lg ／ 左のダークの縦線だけで区切る。長文の段落を並べるときはこれが軽い。</div>
+        <div class="msg">.msg ／ 本文サイズ。段落を続けて置ける。</div>
+        <div class="msg plain">.msg.plain ／ 線を灰色にした控えめ版。</div>
+        <div class="callout">.callout ／ 灰の淡い面で前提や制約条件を分ける。</div>
+        <div class="callout soft">.callout.soft ／ 灰の控えめ版。</div>
+      </div>
+      <div class="rows">
+        <div class="quote">.quote ／ 現場の声をそのまま置く。<span class="who">— 製造部 ご担当者</span></div>
+        <div class="card">
+          <h3 class="card-title">インライン</h3>
+          <p class="card-body">
+            <b>太字</b>／<span class="em">.em 赤太字</span>／<span class="marker">.marker 黄マーカー</span>／<span class="marker-red">.marker-red</span>／<span class="num">1,234</span>（.num は等幅数字）
+          </p>
+          <p class="note">ここは強調方法の見本。外しても読み取りが変わらない強調は使わない。</p>
+        </div>
+        <p class="footnote rule">.footnote.rule ／ 脚注。出典・前提を1〜2行で。</p>
+      </div>
+    </div>
+  </div>
+  <footer class="slide-foot"><img src="../assets/brand/pineal-logo.svg" alt="pineal"><span class="foot-meta">部品カタログ ／ 03</span></footer>
+</section>
+
+<!-- 04 リストとラベル -->
+<section class="slide">
+  <span class="mark"></span>
+  <header class="slide-head rule">
+    <div class="kicker">A-04 リストとラベル</div>
+    <h2 class="title">箇条書き・定義リスト・チップ・バッジ・数値</h2>
+  </header>
+  <p class="lead">箇条書きは行頭マーカーを統一する。数値は本文の中に置くか、必要なときだけ .stat に出す。</p>
+  <div class="body">
+    <div class="cols cols-4 top">
+      <div class="card flat">
+        <div class="label">LIST</div>
+        <ul class="list"><li>.list ／ グレーの点</li><li>2行になっても行頭が揃う</li></ul>
+        <ul class="list check"><li>.list.check ／ ✓</li><li>できることの列挙に</li></ul>
+        <ul class="list dash sm"><li>.list.dash.sm ／ 補足の列挙</li><li>13px になる</li></ul>
+      </div>
+      <div class="card flat">
+        <div class="label">KV</div>
+        <dl class="kv">
+          <dt>対象</dt><dd>設計・調達・製造の3部門</dd>
+          <dt>期間</dt><dd>2026年10月〜2027年3月</dd>
+          <dt>前提</dt><dd>既存の基幹システムは変更しない</dd>
+        </dl>
+      </div>
+      <div class="card flat">
+        <div class="label">CHIP / BADGE</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;">
+          <span class="chip">.chip</span><span class="chip red">.chip.red</span>
+          <span class="chip solid">.chip.solid</span><span class="chip line">.chip.line</span>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center;margin-top:8px;">
+          <span class="badge">1</span><span class="badge ghost">2</span><span class="badge sq">3</span>
+          <span class="note">.badge / .ghost / .sq</span>
+        </div>
+      </div>
+      <div class="card flat">
+        <div class="label">STAT</div>
+        <div class="stats">
+          <div class="stat"><div class="stat-num">32<span class="unit">%</span></div><div class="stat-label">問い合わせ削減</div></div>
+          <div class="stat"><div class="stat-num">4.5<span class="unit">h</span></div><div class="stat-label">1件あたりの短縮</div></div>
+        </div>
+        <p class="note">数値だけを巨大に見せるカードは作らない。単位とラベルを必ず添える。</p>
+      </div>
+    </div>
+  </div>
+  <footer class="slide-foot"><img src="../assets/brand/pineal-logo.svg" alt="pineal"><span class="foot-meta">部品カタログ ／ 04</span></footer>
+</section>
+
+<!-- 05 表 -->
+<section class="slide">
+  <span class="mark"></span>
+  <header class="slide-head rule">
+    <div class="kicker">A-05 表</div>
+    <h2 class="title">表とその崩し方</h2>
+  </header>
+  <p class="lead">条件・料金・比較は表にする。同列の行は揃え、選択・判定対象を明示する場合だけ .hi を使う。</p>
+  <div class="body">
+    <div class="cols cols-2 top">
+      <div class="card flat">
+        <div class="label">.tbl</div>
+        <table class="tbl">
+          <thead><tr><th>区分</th><th>内容</th><th class="r">人日</th><th class="r">金額</th></tr></thead>
+          <tbody>
+            <tr><th>要件整理</th><td>現場ヒアリングと業務の棚卸し</td><td class="r">8</td><td class="r">640,000</td></tr>
+            <tr><th>実装</th><td>ツール開発と既存システムとの接続</td><td class="r">24</td><td class="r">1,920,000</td></tr>
+            <tr><th>定着</th><td>操作説明と運用ルールの整備</td><td class="r">6</td><td class="r">480,000</td></tr>
+          </tbody>
+        </table>
+        <p class="note">セルに2文以上を流し込まない。長くなるならセル内を箇条書きにするか行を分ける。</p>
+      </div>
+      <div class="card flat">
+        <div class="label">.tbl.compact ／ .tbl.lines</div>
+        <table class="tbl compact lines">
+          <thead><tr><th>観点</th><th>現行</th><th>提案</th></tr></thead>
+          <tbody>
+            <tr><th>入力</th><td>Excel を各自が管理</td><td>1つの入力画面に集約</td></tr>
+            <tr><th>共有</th><td>メール添付</td><td>更新のたびに全員が同じ版を見る</td></tr>
+            <tr><th>検索</th><td>ファイル名頼り</td><td>本文と添付を横断して検索</td></tr>
+            <tr><th>引き継ぎ</th><td>担当者の記憶</td><td>案件ページに履歴が残る</td></tr>
+          </tbody>
+        </table>
+        <p class="note">.compact は級数を1段下げ、.lines は縦罫を消す。密度が高いページ向け。</p>
+      </div>
+    </div>
+  </div>
+  <footer class="slide-foot"><img src="../assets/brand/pineal-logo.svg" alt="pineal"><span class="foot-meta">部品カタログ ／ 05</span></footer>
+</section>
+
+<!-- 06 比較とフロー -->
+<section class="slide">
+  <span class="mark"></span>
+  <header class="slide-head rule">
+    <div class="kicker">A-06 比較とフロー</div>
+    <h2 class="title">As-Is / To-Be と工程</h2>
+  </header>
+  <p class="lead">比較と工程の構成例。同列の項目は同じ見た目にする。変更後や最後の工程という理由で色を足さない。</p>
+  <div class="body">
+    <div class="rows">
+      <div class="card flat">
+        <div class="label">.compare</div>
+        <div class="compare">
+          <div class="compare-side">
+            <div class="side-label">AS-IS</div>
+            <div>担当者ごとに Excel を持ち、更新のたびにメールで配る。</div>
+          </div>
+          <div class="compare-arrow"></div>
+          <div class="compare-side to">
+            <div class="side-label">TO-BE</div>
+            <div>1つの案件ページを全員が見る。更新は履歴として残る。</div>
+          </div>
+        </div>
+      </div>
+      <div class="card flat">
+        <div class="label">.flow</div>
+        <div class="flow">
+          <div class="flow-step"><div class="step-no">STEP 1</div><div class="step-title">現場を見る</div><div class="step-body">実際の作業を横で観察し、詰まっている箇所を特定する。</div></div>
+          <div class="flow-arrow"></div>
+          <div class="flow-step"><div class="step-no">STEP 2</div><div class="step-title">試作を出す</div><div class="step-body">2週間で動くものを出し、現場に触ってもらう。</div></div>
+          <div class="flow-arrow"></div>
+          <div class="flow-step"><div class="step-no">STEP 3</div><div class="step-title">運用に載せる</div><div class="step-body">操作説明と運用ルールを整え、担当者に引き渡す。</div></div>
+        </div>
+        <p class="note">縦に積みたいときは <code>.flow.vertical</code>。矢印の向きも変わる。</p>
+      </div>
+    </div>
+  </div>
+  <footer class="slide-foot"><img src="../assets/brand/pineal-logo.svg" alt="pineal"><span class="foot-meta">部品カタログ ／ 06</span></footer>
+</section>
+
+<!-- 07 時間軸 -->
+<section class="slide">
+  <span class="mark"></span>
+  <header class="slide-head rule">
+    <div class="kicker">A-07 時間軸</div>
+    <h2 class="title">タイムラインとマイルストン</h2>
+  </header>
+  <p class="lead">出来事を並べるならタイムライン、期間の重なりを見せるならマイルストン。</p>
+  <div class="body">
+    <div class="cols cols-55 top gap-lg">
+      <div class="card flat">
+        <div class="label">.timeline</div>
+        <div class="timeline">
+          <div class="tl-axis"></div>
+          <div class="tl-items cols cols-3">
+            <div class="tl-item"><div class="tl-when">2026</div><div class="tl-title">部署の問題解決</div><div class="tl-body">一部署と並走し、解けた事例を積む。</div></div>
+            <div class="tl-item"><div class="tl-when">2027</div><div class="tl-title">経営層の問題解決</div><div class="tl-body">データと意思決定をつなぐ。</div></div>
+            <div class="tl-item"><div class="tl-when">2029</div><div class="tl-title">国の問題解決</div><div class="tl-body">産業・公共の構造課題へ。</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="card flat">
+        <div class="label">.milestone</div>
+        <div class="milestone">
+          <div class="ms-head"><span></span><div class="ms-scale" style="grid-template-columns:repeat(4,1fr)"><span>10月</span><span>11月</span><span>12月</span><span>1月</span></div></div>
+          <div class="ms-row"><div class="ms-label">要件整理</div><div class="ms-track"><div class="ms-bar" style="left:0;width:25%">2週</div></div></div>
+          <div class="ms-row"><div class="ms-label">実装</div><div class="ms-track"><div class="ms-bar" style="left:22%;width:50%">8週</div></div></div>
+          <div class="ms-row"><div class="ms-label">定着支援</div><div class="ms-track"><div class="ms-bar ghost" style="left:68%;width:32%">継続</div></div></div>
+        </div>
+        <p class="note">バーの位置と幅は left / width を % で直接指定する。凡例が要るときは .chip を並べる。</p>
+      </div>
+    </div>
+  </div>
+  <footer class="slide-foot"><img src="../assets/brand/pineal-logo.svg" alt="pineal"><span class="foot-meta">部品カタログ ／ 07</span></footer>
+</section>
+
+<!-- 08 人と実績 -->
+<section class="slide">
+  <span class="mark"></span>
+  <header class="slide-head rule">
+    <div class="kicker">A-08 人と実績</div>
+    <h2 class="title">体制図・プロフィール・写真枠・ロゴ壁・事例</h2>
+  </header>
+  <p class="lead">写真は元の縦横比を保つ。枠に合わせて潰さず、object-fit: cover で切り取る。</p>
+  <div class="body">
+    <div class="cols cols-3 top">
+      <div class="card flat">
+        <div class="label">.org</div>
+        <div class="org">
+          <div class="org-cell"><div class="org-photo"></div><div><div class="org-role">プロジェクト責任者</div><div class="org-name">株式会社ピネアル ／ CTO</div><div class="org-body">要件と技術判断の最終責任を持つ。</div></div></div>
+          <div class="org-cell"><div class="org-photo"></div><div><div class="org-role">実装リード</div><div class="org-name">株式会社ピネアル</div><div class="org-body">週次で試作を出し、現場と詰める。</div></div></div>
+        </div>
+      </div>
+      <div class="card flat">
+        <div class="label">.profile ／ .photo</div>
+        <div class="profile">
+          <div class="profile-name">氏名<span class="en">NAME</span></div>
+          <div class="profile-role">所属 ／ 役職</div>
+          <ul class="list sm tight"><li>経歴を3〜4行で。</li><li>数値と固有名詞は元資料のまま。</li></ul>
+        </div>
+        <figure class="photo frame" style="margin-top:10px"><div style="height:66px;background:#E9E5E5;border-radius:4px"></div><figcaption>.photo.frame ／ キャプションは11px。</figcaption></figure>
+      </div>
+      <div class="card flat">
+        <div class="label">.logo-wall ／ .case</div>
+        <div class="logo-wall" style="grid-template-columns:repeat(4,1fr)">
+          <div class="logo-cell text">A社</div><div class="logo-cell text">B社</div>
+          <div class="logo-cell text">C社</div><div class="logo-cell text">D社</div>
+          <div class="logo-cell soft text">E社</div><div class="logo-cell soft text">F社</div>
+          <div class="logo-cell soft text">G社</div><div class="logo-cell soft text">H社</div>
+        </div>
+        <div class="case" style="margin-top:10px">
+          <div class="case-head"><span class="case-tag">製造</span><span class="case-title">検査記録の電子化</span></div>
+          <div class="case-result"><div class="stat"><div class="stat-num">6<span class="unit">週</span></div><div class="stat-label">初回リリースまで</div></div><div class="stat"><div class="stat-num">3<span class="unit">部門</span></div><div class="stat-label">展開範囲</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="slide-foot"><img src="../assets/brand/pineal-logo.svg" alt="pineal"><span class="foot-meta">部品カタログ ／ 08</span></footer>
+</section>
+
+<!-- 09 分割 -->
+<section class="slide">
+  <span class="mark"></span>
+  <header class="slide-head rule">
+    <div class="kicker">A-09 分割</div>
+    <h2 class="title">カラムの割り方</h2>
+  </header>
+  <p class="lead">.cols に列数か比率を足すだけ。入れ子にしてもよい。</p>
+  <div class="body">
+    <div class="rows gap-sm">
+      <div class="cols cols-2"><div class="band">.cols-2</div><div class="band">1fr : 1fr</div></div>
+      <div class="cols cols-3"><div class="band">.cols-3</div><div class="band">3等分</div><div class="band">カードを並べる既定</div></div>
+      <div class="cols cols-4"><div class="band">.cols-4</div><div class="band">4等分</div><div class="band">密度が上がる</div><div class="band">本文は13pxへ</div></div>
+      <div class="cols cols-73"><div class="band">.cols-73 ／ 7fr</div><div class="band">3fr</div></div>
+      <div class="cols cols-37"><div class="band">.cols-37 ／ 3fr</div><div class="band">7fr（左に見出し、右に本体）</div></div>
+      <div class="cols cols-64"><div class="band">.cols-64 ／ 6fr</div><div class="band">4fr</div></div>
+    </div>
+    <p class="footnote">gap は既定16px。<code>.gap-sm</code>（8px）と <code>.gap-lg</code>（30px）で調整する。縦積みは <code>.rows</code>。</p>
+  </div>
+  <footer class="slide-foot"><img src="../assets/brand/pineal-logo.svg" alt="pineal"><span class="foot-meta">部品カタログ ／ 09</span></footer>
+</section>
+
+</div>
+<script src="../core/pineal-viewer.js"></script>
+</body>
+</html>

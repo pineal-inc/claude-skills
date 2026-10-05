@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24.6453 24.6453" width="24.6453" height="24.6453" fill="none" overflow="hidden">
+<!-- pineal マーク（白）。PPTX に白のマーク単体素材が無いため、公式白ワードマーク
+     ppt/media/image23.svg の "i" 字形2パスを d そのままで抜き出し、
+     黒マーク素材 image6.jpg と同じ 1:1 キャンバスへ平行移動しただけのもの。形は再描画していない。 -->
+  <g transform="translate(-26.82737 -4.67773)">
+  <path d="M42.2768 4.67773 36.0232 4.67773C35.885 4.67773 35.7729 4.78972 35.7729 4.92785L35.7729 14.2212C35.7729 14.3594 35.885 14.4714 36.0232 14.4714L42.2768 14.4714C42.415 14.4714 42.5271 14.3594 42.5271 14.2212L42.5271 4.92785C42.5271 4.78972 42.415 4.67773 42.2768 4.67773Z" class="MsftOfcThm_Background1_Fill_v2" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="4" fill="#FFFFFF" fill-opacity="1"/>
+  <path d="M42.2768 19.2793 36.0232 19.2793C35.885 19.2793 35.7729 19.3913 35.7729 19.5294L35.7729 29.0729C35.7729 29.2111 35.885 29.323 36.0232 29.323L42.2768 29.323C42.415 29.323 42.5271 29.2111 42.5271 29.0729L42.5271 19.5294C42.5271 19.3913 42.415 19.2793 42.2768 19.2793Z" class="MsftOfcThm_Background1_Fill_v2" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="4" fill="#FFFFFF" fill-opacity="1"/>
+  </g>
+</svg>

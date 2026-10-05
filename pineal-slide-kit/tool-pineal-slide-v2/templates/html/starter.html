@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>starter ｜ pineal slide html</title>
+<!-- 1) 共通CSS：この3枚は常に読む -->
+<link rel="stylesheet" href="core/pineal-tokens.css">
+<link rel="stylesheet" href="core/pineal-slide.css">
+<link rel="stylesheet" href="core/pineal-blocks.css">
+<!-- 2) 見るための外側。印刷では自動的に無効化される -->
+<link rel="stylesheet" href="core/pineal-viewer.css">
+<!-- 3) 資料固有CSS：この資料だけの調整はここに書く（共通CSSは触らない） -->
+<style>
+  /* 資料固有CSSは必ず deck クラスの中に閉じる。
+     body の deck-starter を頭に付けておけば、他の資料や
+     ギャラリーへ styles が漏れない。 */
+  .deck-starter .footnote { padding-top: 6px; }
+</style>
+</head>
+<body class="deck-starter">
+<div class="deck">
+
+  <!-- ============ 表紙 ============ -->
+  <section class="slide cover">
+    <div class="cover-art"></div>
+    <div class="cover-inner">
+      <div class="cover-kicker">PROPOSAL</div>
+      <h1 class="cover-title">ここに提案書のタイトルを<br>2行までで書く</h1>
+      <div class="cover-to">〇〇株式会社 御中</div>
+      <div class="cover-date">2026年9月12日</div>
+    </div>
+    <div class="cover-sign">
+      <img src="assets/brand/pineal-logo.svg" alt="pineal">
+      <div class="org">株式会社ピネアル</div>
+    </div>
+  </section>
+
+  <!-- ============ 目次 ============ -->
+  <section class="slide agenda">
+    <div class="agenda-panel">
+      <div class="en">Agenda</div>
+    </div>
+    <!-- 目次のワードマークは白地の右下に黒で置く（v3 目次レイアウトの位置） -->
+    <img class="logo" src="assets/brand/pineal-logo.svg" alt="pineal">
+    <div class="agenda-list">
+      <div class="agenda-item on"><span class="no">01</span><span class="nm">現状の整理</span><span class="desc">どこで詰まっているか</span></div>
+      <div class="agenda-item"><span class="no">02</span><span class="nm">ご提案の骨子</span><span class="desc">何を変えるか</span></div>
+      <div class="agenda-item"><span class="no">03</span><span class="nm">進め方</span><span class="desc">体制とスケジュール</span></div>
+      <div class="agenda-item"><span class="no">04</span><span class="nm">お見積り</span><span class="desc">費用と前提</span></div>
+    </div>
+  </section>
+
+  <!-- ============ 章扉 ============ -->
+  <section class="slide section">
+    <div class="sec-inner">
+      <div class="sec-en">SECTION 01</div>
+      <h2 class="sec-title">現状の整理</h2>
+      <p class="sec-lead">現場で何が起きているかを、観測できた事実だけで並べる。</p>
+    </div>
+    <div class="sec-no">01</div>
+  </section>
+
+  <!-- ============ 中面（主力の型）============
+       .slide-head.rule → タイトル＋灰罫＋左91pxの赤罫（v3の中面Aと同じ）
+       .lead            → そのページで言い切る一文
+       .body            → ここに部品を混ぜる
+  -->
+  <section class="slide">
+    <span class="mark"></span>
+    <header class="slide-head rule">
+      <div class="kicker">01 現状の整理 ／ AS-IS</div>
+      <h2 class="title">ページのタイトルは主題を名指しする名詞句で書く</h2>
+    </header>
+    <p class="lead">結論はこのリードに書く。見出しに結論を詰め込まない。</p>
+    <div class="body">
+      <div class="cols cols-3 fill">
+        <div class="card">
+          <div class="card-label">POINT 01</div>
+          <h3 class="card-title">箱のタイトル</h3>
+          <p class="card-body">白地に <code>#D9D9D9</code> の枠。これが基本の箱。</p>
+        </div>
+        <div class="card">
+          <div class="card-label">POINT 02</div>
+          <h3 class="card-title">並列の項目</h3>
+          <p class="card-body">同じ役割の項目は同じ見た目にする。中央という理由で色を足さない。</p>
+        </div>
+        <div class="card">
+          <div class="card-label ink">POINT 03</div>
+          <h3 class="card-title">見出しと間隔で整理</h3>
+          <p class="card-body">違いや状態を示す必要がなければ、塗りや太枠で強調しない。</p>
+        </div>
+      </div>
+      <p class="footnote">※ 脚注はここ。出典・前提・注記を1〜2行で。</p>
+    </div>
+    <footer class="slide-foot">
+      <img src="assets/brand/pineal-logo.svg" alt="pineal">
+      <span class="foot-meta">資料名 ／ 04</span>
+    </footer>
+  </section>
+
+  <!-- ============ 分割（中面B：左に文、右にパネル）============ -->
+  <section class="slide split">
+    <div class="split-panel"></div>
+    <header class="slide-head rule">
+      <div class="kicker">02 ご提案の骨子</div>
+      <h2 class="title">左に文、右に図を置く型</h2>
+    </header>
+    <p class="lead">文章量が多いページは、右のパネルに図や写真を逃がす。</p>
+    <div class="body">
+      <div style="position:absolute; left:390px; top:0; width:775px;">
+        <div class="rows">
+          <div class="card"><h3 class="card-title">右パネルの中は自由</h3><p class="card-body">部品を並べても、専用のHTML/CSSを書いてもよい。</p></div>
+          <div class="card"><h3 class="card-title">はみ出しだけ見る</h3><p class="card-body">720pxの下端を超えていないか、スクリーンショットで確認する。</p></div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-foot">
+      <img src="assets/brand/pineal-logo.svg" alt="pineal">
+      <span class="foot-meta">資料名 ／ 05</span>
+    </footer>
+  </section>
+
+  <!-- ============ 締め ============ -->
+  <section class="slide end">
+    <img src="assets/brand/pineal-logo-white.svg" alt="pineal">
+  </section>
+
+</div>
+<script src="core/pineal-viewer.js"></script>
+</body>
+</html>

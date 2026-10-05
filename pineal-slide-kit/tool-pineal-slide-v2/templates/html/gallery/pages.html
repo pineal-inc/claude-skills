@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>ページ構成例 ｜ pineal slide html</title>
+<link rel="stylesheet" href="../core/pineal-tokens.css">
+<link rel="stylesheet" href="../core/pineal-slide.css">
+<link rel="stylesheet" href="../core/pineal-blocks.css">
+<link rel="stylesheet" href="../core/pineal-viewer.css">
+<style>
+  /* --- ここから下は「このギャラリー専用」。deck-pages の中に閉じてある --- */
+  .deck-pages code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 11px; color: var(--ink-mid); background: var(--paper-soft); padding: 1px 5px; border-radius: 3px; }
+
+  /* B-07 自由設計ページ専用。共通CSSには入れず、ここだけで完結させる */
+  .deck-pages .freepage { background: #FBFAFA; }
+  .deck-pages .freepage .fp-side {
+    position: absolute; left: 0; top: 0; bottom: 0; width: 96px;
+    background: var(--ink); color: #fff;
+    display: flex; flex-direction: column; align-items: center; justify-content: space-between;
+    padding: 34px 0;
+  }
+  .deck-pages .freepage .fp-vert {
+    writing-mode: vertical-rl; font-size: 15px; letter-spacing: .3em; font-weight: 600;
+  }
+  .deck-pages .freepage .fp-main { position: absolute; left: 150px; right: 58px; top: 56px; bottom: 52px; }
+  .deck-pages .freepage .fp-title { font-size: 40px; font-weight: 700; line-height: 1.25; }
+  .deck-pages .freepage .fp-title em { font-style: normal; }
+  .deck-pages .freepage .fp-lead { margin-top: 14px; font-size: 16px; color: var(--ink-mid); max-width: 640px; }
+  .deck-pages .freepage .fp-ring {
+    position: absolute; right: 0; top: 96px; width: 366px; height: 366px;
+  }
+  .deck-pages .freepage .fp-grid {
+    position: absolute; left: 0; right: 420px; top: 210px; display: grid; gap: 1px;
+    background: var(--line); border: 1px solid var(--line);
+  }
+  .deck-pages .freepage .fp-cell { background: #FBFAFA; padding: 14px 16px; }
+  .deck-pages .freepage .fp-cell b { display: block; font-size: 14px; margin-bottom: 4px; }
+  .deck-pages .freepage .fp-cell span { font-size: 12px; color: var(--ink-weak); line-height: 1.6; }
+  .deck-pages .freepage .fp-foot { position: absolute; left: 150px; bottom: 22px; font-size: 11px; color: var(--ink-weak); }
+</style>
+</head>
+<body class="deck-pages">
+<div class="deck">
+
+<!-- 扉 -->
+<section class="slide section">
+  <div class="sec-inner">
+    <div class="sec-en">LAYOUTS</div>
+    <h2 class="sec-title">ページ構成例</h2>
+    <p class="sec-lead">既定の構成を選ぶ、部品を混ぜる、専用に作る。どれを選んでもよい。</p>
+  </div>
+  <div class="sec-no">B</div>
+</section>
+
+<!-- B-01 表紙 -->
+<section class="slide cover">
+  <div class="cover-art"></div>
+  <div class="cover-inner">
+    <div class="cover-kicker">PROPOSAL</div>
+    <h1 class="cover-title">案件管理のナレッジを<br>残す仕組みのご提案</h1>
+    <div class="cover-to">〇〇株式会社 御中</div>
+    <div class="cover-date">2026年9月12日</div>
+  </div>
+  <div class="cover-sign">
+    <img src="../assets/brand/pineal-logo.svg" alt="pineal">
+    <div class="org">株式会社ピネアル</div>
+  </div>
+</section>
+
+<!-- B-02 目次 -->
+<section class="slide agenda">
+  <div class="agenda-panel">
+    <div class="en">Agenda</div>
+  </div>
+  <!-- 目次のワードマークは白地の右下に黒で置く（v3 目次レイアウトの位置） -->
+  <img class="logo" src="../assets/brand/pineal-logo.svg" alt="pineal">
+  <div class="agenda-list">
+    <div class="agenda-item on"><span class="no">01</span><span class="nm">現状の整理</span><span class="desc">どこで止まっているか</span></div>
+    <div class="agenda-item"><span class="no">02</span><span class="nm">ご提案の骨子</span><span class="desc">何を変えるか</span></div>
+    <div class="agenda-item"><span class="no">03</span><span class="nm">仕組みの構造</span><span class="desc">どう動くか</span></div>
+    <div class="agenda-item"><span class="no">04</span><span class="nm">進め方と体制</span><span class="desc">誰が何をするか</span></div>
+    <div class="agenda-item"><span class="no">05</span><span class="nm">お見積り</span><span class="desc">費用と前提条件</span></div>
+  </div>
+</section>
+
+<!-- B-03 中面A（主力） -->
+<section class="slide">
+  <span class="mark"></span>
+  <header class="slide-head rule">
+    <div class="kicker">B-03 中面A</div>
+    <h2 class="title">主力の型：タイトル＋リード＋本体</h2>
+  </header>
+  <p class="lead">図解ページの起点。<code>.body</code> の中身を差し替えるだけで大半のページが作れる。</p>
+  <div class="body">
+    <div class="cols cols-3 fill">
+      <div class="card"><div class="card-label">01</div><h3 class="card-title">現場で起きていること</h3><p class="card-body">担当者ごとに管理の形が違い、引き継ぎのたびに情報が落ちる。</p></div>
+      <div class="card"><div class="card-label">02</div><h3 class="card-title">探す時間</h3><p class="card-body">過去の類似案件を探すのに、担当者の記憶を頼るしかない。</p></div>
+      <div class="card"><div class="card-label">03</div><h3 class="card-title">積み上がらない</h3><p class="card-body">終わった案件の知見が、次の案件で参照されないまま残る。</p></div>
+    </div>
+    <p class="footnote rule">※ 構成例のためのダミー文。実案件では元資料の文言をそのまま使う。</p>
+  </div>
+  <footer class="slide-foot"><img src="../assets/brand/pineal-logo.svg" alt="pineal"><span class="foot-meta">ページ構成例 ／ 03</span></footer>
+</section>
+
+<!-- B-04 中面B（分割） -->
+<section class="slide split">
+  <div class="split-panel"></div>
+  <header class="slide-head rule">
+    <div class="kicker">B-04 中面B</div>
+    <h2 class="title">左に文、右に図</h2>
+  </header>
+  <p class="lead">説明が長いページは、右のパネルに図を逃がすと文が読める。</p>
+  <div class="body">
+    <div style="position:absolute; left:390px; top:-40px; width:775px;">
+      <div class="flow vertical">
+        <div class="flow-step"><div class="step-no">INPUT</div><div class="step-title">案件を登録する</div><div class="step-body">顧客・商材・期限を1つの画面に入れる。</div></div>
+        <div class="flow-arrow"></div>
+        <div class="flow-step"><div class="step-no">PROCESS</div><div class="step-title">やり取りが自動で残る</div><div class="step-body">メールと議事録を案件ページに紐づける。</div></div>
+        <div class="flow-arrow"></div>
+        <div class="flow-step"><div class="step-no">OUTPUT</div><div class="step-title">次の案件で引ける</div><div class="step-body">類似案件の進め方と条件を検索で取り出す。</div></div>
+      </div>
+    </div>
+  </div>
+  <footer class="slide-foot"><img src="../assets/brand/pineal-logo.svg" alt="pineal"><span class="foot-meta">ページ構成例 ／ 04</span></footer>
+</section>
+
+<!-- B-05 章扉 -->
+<section class="slide section">
+  <div class="sec-inner">
+    <div class="sec-en">SECTION 03</div>
+    <h2 class="sec-title">仕組みの構造</h2>
+    <p class="sec-lead">どこにデータが溜まり、どこから取り出されるか。</p>
+  </div>
+  <div class="sec-no">03</div>
+</section>
+
+<!-- B-06 部品を混ぜたページ -->
+<section class="slide">
+  <span class="mark"></span>
+  <header class="slide-head rule">
+    <div class="kicker">B-06 組み合わせ</div>
+    <h2 class="title">複数の部品を1ページに混ぜる</h2>
+  </header>
+  <p class="lead">比較・フロー・表・数値を1枚に載せても、余白と級数を守れば読める。</p>
+  <div class="body tight">
+    <div class="cols cols-64 top">
+      <div class="rows gap-sm">
+        <div class="compare">
+          <div class="compare-side"><div class="side-label">AS-IS</div><div>担当者の Excel と個人フォルダに分散している。</div></div>
+          <div class="compare-arrow"></div>
+          <div class="compare-side to"><div class="side-label">TO-BE</div><div>案件ページに集約し、履歴として残る。</div></div>
+        </div>
+        <div class="flow">
+          <div class="flow-step"><div class="step-no">STEP 1</div><div class="step-title">登録</div><div class="step-body">案件の入口を1つにする。</div></div>
+          <div class="flow-arrow"></div>
+          <div class="flow-step"><div class="step-no">STEP 2</div><div class="step-title">蓄積</div><div class="step-body">やり取りが自動で紐づく。</div></div>
+          <div class="flow-arrow"></div>
+          <div class="flow-step"><div class="step-no">STEP 3</div><div class="step-title">再利用</div><div class="step-body">次の案件で引き当てる。</div></div>
+        </div>
+      </div>
+      <div class="rows gap-sm">
+        <table class="tbl compact">
+          <thead><tr><th>観点</th><th>現行</th><th>提案</th></tr></thead>
+          <tbody>
+            <tr><th>入力</th><td>各自の Excel</td><td>1つの案件ページ</td></tr>
+            <tr><th>共有</th><td>メール添付</td><td>同じ版を全員が見る</td></tr>
+            <tr><th>再利用</th><td>担当者の記憶</td><td>横断検索</td></tr>
+          </tbody>
+        </table>
+        <div>
+          <div class="stats">
+            <div class="stat"><div class="stat-num">3<span class="unit">部門</span></div><div class="stat-label">初期の対象</div></div>
+            <div class="stat"><div class="stat-num">6<span class="unit">週</span></div><div class="stat-label">初回リリース</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="footnote rule">※ 部品どうしの間隔は <code>.rows.gap-sm</code> で詰めている。密度を上げたら級数は下げない。</p>
+  </div>
+  <footer class="slide-foot"><img src="../assets/brand/pineal-logo.svg" alt="pineal"><span class="foot-meta">ページ構成例 ／ 06</span></footer>
+</section>
+
+<!-- B-07 完全に自由に設計したページ -->
+<section class="slide free freepage">
+  <div class="fp-side">
+    <div class="fp-vert">STRUCTURE</div>
+    <img src="../assets/brand/pineal-logo-white.svg" alt="pineal" style="width:56px">
+  </div>
+  <div class="fp-main">
+    <div class="fp-title">部品を使わずに、<br>このページだけの図を<em>直接組む</em></div>
+    <div class="fp-lead">共通CSSはトークン（色・級数・余白）だけを効かせ、レイアウトはこのページ専用のCSSで書いた。SVGを直接置いてもよい。</div>
+
+    <svg class="fp-ring" viewBox="0 0 366 366" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="183" cy="183" r="170" fill="none" stroke="#D9D9D9" stroke-width="1"/>
+      <circle cx="183" cy="183" r="126" fill="none" stroke="#D9D9D9" stroke-width="1"/>
+      <circle cx="183" cy="183" r="80" fill="#FFFFFF"/>
+      <circle cx="183" cy="183" r="80" fill="none" stroke="#939292" stroke-width="1.5"/>
+      <text x="183" y="178" text-anchor="middle" font-family="Noto Sans JP, sans-serif" font-size="15" font-weight="700" fill="#1C1A1A">案件ページ</text>
+      <text x="183" y="199" text-anchor="middle" font-family="Noto Sans JP, sans-serif" font-size="11" fill="#57534F">1件 = 1ページ</text>
+      <g font-family="Noto Sans JP, sans-serif" font-size="11" fill="#1C1A1A" text-anchor="middle">
+        <circle cx="183" cy="57" r="26" fill="#fff" stroke="#D9D9D9"/><text x="183" y="61">メール</text>
+        <circle cx="292" cy="120" r="26" fill="#fff" stroke="#D9D9D9"/><text x="292" y="124">議事録</text>
+        <circle cx="292" cy="246" r="26" fill="#fff" stroke="#D9D9D9"/><text x="292" y="250">見積</text>
+        <circle cx="183" cy="309" r="26" fill="#fff" stroke="#D9D9D9"/><text x="183" y="313">契約書</text>
+        <circle cx="74" cy="246" r="26" fill="#fff" stroke="#D9D9D9"/><text x="74" y="250">検索</text>
+        <circle cx="74" cy="120" r="26" fill="#fff" stroke="#D9D9D9"/><text x="74" y="124">履歴</text>
+      </g>
+      <g stroke="#939292" stroke-width="1.2">
+        <line x1="183" y1="83" x2="183" y2="103"/><line x1="271" y1="134" x2="254" y2="145"/>
+        <line x1="271" y1="232" x2="254" y2="221"/><line x1="183" y1="283" x2="183" y2="263"/>
+        <line x1="95" y1="232" x2="112" y2="221"/><line x1="95" y1="134" x2="112" y2="145"/>
+      </g>
+    </svg>
+
+    <div class="fp-grid" style="grid-template-columns:repeat(2,1fr)">
+      <div class="fp-cell"><b>共通CSSから受け取るもの</b><span>色・級数・余白・フォント。トークンだけを使う。</span></div>
+      <div class="fp-cell"><b>このページで決めるもの</b><span>レイアウト、図の形、縦書きラベル、SVG。</span></div>
+      <div class="fp-cell"><b>守るもの</b><span>1280×720 に収まる。文字が小さくなりすぎない。ブランドの色から外れない。</span></div>
+      <div class="fp-cell"><b>やらないこと</b><span>共通CSSの書き換え。他ページへ影響する変更。</span></div>
+    </div>
+  </div>
+  <div class="fp-foot">ページ構成例 ／ 07 ／ 自由設計</div>
+</section>
+
+<!-- B-08 締め -->
+<section class="slide end">
+  <img src="../assets/brand/pineal-logo-white.svg" alt="pineal">
+</section>
+
+</div>
+<script src="../core/pineal-viewer.js"></script>
+</body>
+</html>
