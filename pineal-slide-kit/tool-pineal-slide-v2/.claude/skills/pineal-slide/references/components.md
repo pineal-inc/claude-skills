@@ -503,7 +503,7 @@ PPTX 側で `.lead` が折り返しても後続コンポーネントの座標は
 ```html
 <div class="testimonial">
   <p class="quote-mark">"</p>
-  <p>プロンプトを工夫しながらAIと対話することで、業務改善の相棒になると感じています</p>
+  <p>ここに参加者の感想を1〜2文で入れる（見本の文）</p>
   <p style="font-size: 8pt; color: #939292; margin-top: 6pt;">Aさん（営業部門）</p>
 </div>
 ```
@@ -522,12 +522,12 @@ PPTX 側で `.lead` が折り返しても後続コンポーネントの座標は
     </div>
     <div class="case-body">
       <p class="case-label">背景</p>
-      <p style="font-size: 8pt;">エンジニア経験ゼロ。AI活用の推進力を身につけたい</p>
+      <p style="font-size: 8pt;">背景を1文で書く（見本の文）</p>
       <p class="case-label">取り組み</p>
-      <p style="font-size: 8pt;">日報対応チャットボット他、3つ以上のアイデアを実装</p>
+      <p style="font-size: 8pt;">取り組みを1文で書く（見本の文）</p>
     </div>
     <div class="case-result">
-      <p style="color: white; font-size: 9pt; font-weight: 700;">月80時間以上の業務削減を実現</p>
+      <p style="color: white; font-size: 9pt; font-weight: 700;">結果を1文で書く（見本の文）</p>
     </div>
   </div>
   <!-- 2人目も同様 -->
@@ -559,7 +559,7 @@ PPTX 側で `.lead` が折り返しても後続コンポーネントの座標は
     <div class="bubble sm">
       <p style="color: white; font-size: 14pt; font-weight: 900;">120万</p>
     </div>
-    <p style="text-align: center; font-size: 9pt; font-weight: 700; margin-top: 6pt;">ライバック</p>
+    <p style="text-align: center; font-size: 9pt; font-weight: 700; margin-top: 6pt;">社内育成</p>
   </div>
 </div>
 ```
@@ -602,7 +602,7 @@ PPTX 側で `.lead` が折り返しても後続コンポーネントの座標は
   <div class="result-label">
     <p style="color: #1C1A1A; font-size: 7pt; font-weight: 900;">結果</p>
   </div>
-  <p style="color: white; font-size: 10pt; font-weight: 700;">ライバック期間だけで月80時間以上の業務時間削減を実現</p>
+  <p style="color: white; font-size: 10pt; font-weight: 700;">結果を1文で書く（見本の文）</p>
 </div>
 ```
 
@@ -642,7 +642,7 @@ PPTX 側で `.lead` が折り返しても後続コンポーネントの座標は
       <div class="section-label">
         <p style="color: white; font-size: 7pt; font-weight: 700;">概要</p>
       </div>
-      <p style="font-size: 8pt;">時間：4時間x12日間 / 形式：インターン型 / 定員：8名</p>
+      <p style="font-size: 8pt;">時間：◯時間x◯日間 / 形式：◯◯ / 定員：◯名</p>
     </div>
     <div class="section-block" style="margin-top: 8pt;">
       <div class="section-label primary">

@@ -2,21 +2,10 @@
 
 pinealのテンプレートに沿った**提案書パワポ**を、Claude Code で作成・改修するためのスキル。
 
-https://github.com/pineal-inc/pineal-slide-v3 （**社内限定・プライベート**）
-
 ## セットアップ
 
-```bash
-git clone https://github.com/pineal-inc/pineal-slide-v3.git
-cd pineal-slide-v3
-bash tools/setup_git_textconv.sh        # pptxの差分を読めるようにする（clone毎に1回）
-
-# Claude Code のスキルとして登録（リンクを張るだけ）
-ln -s "$(pwd)" ~/.claude/skills/pineal-slide-v3
-```
-
-必要なもの: `python-pptx`（`pip3 install python-pptx`）、Microsoft PowerPoint、
-`pdftoppm`（`brew install poppler`）。
+キット直下の `setup.sh` がまとめて行う（手順はキットの README）。
+このフォルダを `~/.claude/skills/` へリンクする必要はない。`pineal-slide` スキルの `pptx/pptxlib.py` がキット内の場所を自動で見つける。
 
 ---
 
@@ -46,7 +35,7 @@ pinealの提案書を**決まった手順・決まった寸法で**組み立て�
 
 ```
 S02 pinealは、マーケ領域を含む◯◯様の複数部門でご支援実績があります
-S03 本プロジェクトは、プロセスはグローバル共通・システムは各国実装の二層構造です
+S03 本プロジェクトは、現状整理と仕組みづくりの2段階で進めます
 S04 ...
 ```
 
@@ -180,8 +169,7 @@ bash tools/setup_git_textconv.sh
   **実際の PowerPoint に描画させる**ので、書体もレイアウトも実機と一致する。
   実行中は PowerPoint が前面に出るので触らないこと。対象を開いたままだと失敗する。
   PowerPoint が無い環境は `--engine libreoffice`（ただし**書体は置換される**）。
-- **テンプレには社内情報が含まれる**（役員の写真・経歴、クライアントロゴ）。
-  **社内限定**。公開リポジトリやクライアントへの配布はしない。
+- 公開版のテンプレは、社内情報（役員の写真・経歴、クライアントロゴ、連絡先）を載せた4・5・6・15枚目の中身を外してある。
 - 提出済みファイルは**別名で凍結**し、以降の改修は作業用の統合版だけに入れる。
 
 ---
