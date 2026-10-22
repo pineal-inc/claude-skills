@@ -23,7 +23,7 @@ xlwingsは実際のExcel.appを起動して操作するため、`visible=True` �
 
 - macOS + Microsoft Excel(デスクトップ版)
 - Python 3.10+、`pip install xlwings openpyxl`
-- 品質ゲートのPDFレンダリング検査(任意)にはLibreOffice(`soffice`)
+- LibreOfficeは不要。品質ゲートの `--render-pdf` はLibreOfficeを呼ぶ任意オプションで、このスキルでは使わない(表示確認は実Excelで行う)
 - **初回実行時**、macOSが端末アプリにExcelの制御を許可するか尋ねるダイアログを出す。応答するまでxlwingsが止まって見えるので、初回はExcelを可視(`visible=True`)で動かして画面を確認するとよい。許可は「システム設定 > プライバシーとセキュリティ > オートメーション」から後で変更できる
 
 ## 既存ファイルの更新(xlwings)
@@ -94,16 +94,30 @@ python scripts/recalc.py output.xlsx
 作成・更新したxlsxは、渡す前に必ず品質ゲートを通す。
 
 ```bash
-python scripts/xlsx_quality_gate.py output.xlsx --render-pdf
+python scripts/xlsx_quality_gate.py output.xlsx
 ```
 
-検出するもの: ZIP/XML破損、openpyxlで開けない構造、非表示の行・列、freeze paneと選択セルの不整合、折り返しテキストの行高不足(East Asian widthで日本語の字幅を見積もる)、数式エラー文字列、LibreOfficeでのPDFレンダリング失敗。
+検出するもの: ZIP/XML破損、openpyxlで開けない構造、非表示の行・列、freeze paneと選択セルの不整合、折り返しテキストの行高不足(East Asian widthで日本語の字幅を見積もる)、数式エラー文字列。
 
 行高不足などは自動修復できる。
 
 ```bash
 python scripts/xlsx_quality_gate.py output.xlsx --fix --out output-fixed.xlsx
-python scripts/xlsx_quality_gate.py output-fixed.xlsx --render-pdf
+python scripts/xlsx_quality_gate.py output-fixed.xlsx
+```
+
+ゲートを通ったら、xlwingsで実Excelに開かせて表示を確かめる。修復ダイアログが出ないこと、折り返しセルが切れていないことを画面で見る。
+
+```python
+import xlwings as xw
+
+app = xw.App(visible=True)
+try:
+    wb = app.books.open('/absolute/path/output-fixed.xlsx')
+    # 各シートを画面で確認する。必要なら wb.sheets[i].activate() で切り替える
+finally:
+    wb.close()
+    app.quit()
 ```
 
 日本語の長文セルは、文字数ではなく表示幅で行高を見積もらないと切れて見える。ゲートはこの見積もりを含むが、そもそも折り返しセルには「wrap text + 上揃え + 十分な行高(実用上の上限は約409pt)」を設定して書き込むこと。
