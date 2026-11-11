@@ -10,7 +10,7 @@
 
 ## スライドの契約（pineal-v2.1）
 
-> **見出し・本文の文体の正本（必読）** → `~/.claude/rules/document-tone-rules.md`
+> **見出し・本文の文体の正本（必読）** → `~/.claude/rules/document-tone-rules.md` と `~/.claude/rules/document-tone-rules-headings.md`
 
 ルート要素には `data-slide-type` と `data-contract-version="pineal-v2.1"` を付ける。
 

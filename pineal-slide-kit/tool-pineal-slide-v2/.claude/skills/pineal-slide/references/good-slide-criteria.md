@@ -18,7 +18,7 @@ Phase 3 の視覚配置設計で使う判断基準。各スライドに対して
 
 ## 原則 2: 見出しは h1、結論は `.lead`
 
-> **文体の正本（必読）** → `~/.claude/rules/document-tone-rules.md`
+> **文体の正本（必読）** → `~/.claude/rules/document-tone-rules.md` と `~/.claude/rules/document-tone-rules-headings.md`
 
 要素の役割分担だけをここで定める。h1 はスライドの見出し、`.lead` は結論を置く要素。
 **h1 と `.lead` に何を書けるか（条件・型・Fail 記号・修正の型・例）は正本が定義する。

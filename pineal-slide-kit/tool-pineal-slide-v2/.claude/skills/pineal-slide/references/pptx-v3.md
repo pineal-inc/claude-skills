@@ -80,7 +80,7 @@ pptxlib.configure(assets=HERE.parent / 'slides/<資料名>/assets', out=HERE / '
 1. 設計書を書く
    - v3 `references/design-doc-template.md` の雛形を使う
    - ストーリーラインは「S番号 タイトル｜リード」を HTML 版から写す
-   - タイトルは名詞句、結論はメッセージライン（キット直下の `rules/document-tone-rules.md` R1）
+   - タイトルは名詞句、結論はメッセージライン（キット直下の `rules/document-tone-rules-headings.md` R1）
    - スライド別に「流用する型」と「ボディの構成」を1行ずつ書く
 2. パイロット8枚
    - 型と部品の組み合わせが出そろう8枚を選ぶ（表紙、章扉、表、As-Is/To-Be、画面つき、構成図など）

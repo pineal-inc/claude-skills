@@ -16,7 +16,8 @@
   - イラストの生成には利用者の Gemini の API キー（環境変数 `GEMINI_API_KEY`）が要る
   - キーの値を表示しない。チャットに貼るよう求めない。設定済みかどうかは `[ -n "$GEMINI_API_KEY" ] && echo set` で確かめる
 - 文章
-  - `rules/document-tone-rules.md`（見出し・本文・命名の正本）
+  - `rules/document-tone-rules.md`（本文と表記の正本）
+  - `rules/document-tone-rules-headings.md`（見出しと命名の正本）
   - 資料を書く前と、検収の前に読む
 
 ## 作業場所
