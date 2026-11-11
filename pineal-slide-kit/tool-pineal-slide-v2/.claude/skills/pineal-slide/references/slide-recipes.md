@@ -7,7 +7,7 @@
 フルスライドのテンプレートは持たない（レイアウトの正本は components.md、図の正本は
 同じフォルダの `figure-templates.md`。このファイルは両者の組み合わせだけを定める）。
 
-各レシピの見出し・リードは文体ルール（`~/.claude/rules/document-tone-rules.md`）の判定対象。
+各レシピの見出し・リードは文体ルールの判定対象。見出しは `~/.claude/rules/document-tone-rules-headings.md`、リードは `~/.claude/rules/document-tone-rules.md` で判定する。
 可用高（h2 あり 230.8pt / h2 なし 265pt）は components.md の値に従う。
 
 ## レシピ一覧

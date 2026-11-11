@@ -29,7 +29,7 @@
 > **適用範囲**: 本節は `pineal-slide` / `pineal-validate` と
 > `templates/pineal-v2.css` を使う成果物（PPTX 変換前提のスライド）の配色正本。
 > `figure-templates.md` に直値で書かれている色も本節の値である。
-> 文体（R1〜R6）と「表記の共通ルール」は `~/.claude/rules/document-tone-rules.md` が正本。
+> 見出しの R1〜R4 は `~/.claude/rules/document-tone-rules-headings.md`、本文の R5〜R6 と「表記の共通ルール」は `~/.claude/rules/document-tone-rules.md` が正本。
 - **赤（#D21E2C）の既定はブランド要素のみ**: ヘッダー下の1pt罫線、h1左のアクセントバー（ダーク面含む）。それ以外の赤はすべて意図的なオプトイン
 - **「赤系」は閉じた列挙**: `#D21E2C`（Primary）・`#A01423`（Primary Dark）・`rgba(210,30,44,*)` の3つ。この列挙以外の赤（例 `#8e0000`）はパレット外であり使わない。検査もこの列挙に対して行う
 - **強調は必須ではない。赤ゼロのスライドが標準**。タイムテーブル・一覧表・説明スライドなどは強調なしでよい
@@ -70,7 +70,7 @@
 
 ### タイポグラフィルール
 
-> **文体の正本（必読）** → `~/.claude/rules/document-tone-rules.md`
+> **文体の正本（必読）** → `~/.claude/rules/document-tone-rules.md` と `~/.claude/rules/document-tone-rules-headings.md`
 > h1 / h2 / h3 / h4 は同ファイルの R1〜R4、本文と `.lead` は R5〜R6 の判定対象。
 > ここには規範文を再掲しない（再掲すると片側だけ更新されて矛盾するため）。
 
